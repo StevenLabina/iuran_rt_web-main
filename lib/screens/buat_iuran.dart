@@ -461,14 +461,14 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Khusus',
                               style: TextStyle(
-                                color: Colors.red,
+                                color: Colors.white,
                                 fontSize: 18,
                               ),
                             ),
@@ -484,14 +484,14 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Pengelolaan Lingkungan',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.red,
                                 fontSize: 18,
                               ),
                             ),

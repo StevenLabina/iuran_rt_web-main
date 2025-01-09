@@ -346,14 +346,14 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Khusus',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.red,
                                 fontSize: 18,
                               ),
                             ),
@@ -365,14 +365,14 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                              
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Pengelolaan Lingkungan',
                               style: TextStyle(
-                                color: Colors.red,
+                                color: Colors.white,
                                 fontSize: 18,
                               ),
                             ),
@@ -385,11 +385,11 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                       children: [
                         Text("Kategori IPL Kavling"),
                         SizedBox(width: 3),
-                        TextButton(
-                          onPressed: _ketentuanDialog,
+                        InkWell(
+                          onTap: _ketentuanDialog, // Fungsi yang dijalankan saat diklik
                           child: Text(
                             'Klik Disini',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
                           ),
                         ),
                       ],
