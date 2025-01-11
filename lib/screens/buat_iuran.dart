@@ -257,7 +257,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
 // }
 
   Future<void> simpanRekap(int idIuran) async {
-    final urlRekap = '${ApiUrls.baseUrl}/tambahRekap.php';
+    final urlRekap = '${ApiUrls.baseUrl}/tambahRekapKhusus.php';
     final bodyRekap = {
       'id_iuran': idIuran.toString(),
     };

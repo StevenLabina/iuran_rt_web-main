@@ -775,7 +775,7 @@ class _MainScreenState extends State<MainScreen> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image:
-                  AssetImage('assets/images/pexels-thelazyartist-1642125.jpg'),
+                  AssetImage('assets/images/trr.png'),
               fit: BoxFit.cover,
             ),
           ),

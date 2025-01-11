@@ -85,6 +85,7 @@ flutter:
    - assets/images/Logo2.png
    - assets/images/Logo1.png
    - assets/images/contoh.png
+   - assets/images/trr.png
    #Main
    - assets/images/ChartDonut.svg
    - assets/images/HandCoins.svg
