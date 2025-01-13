@@ -371,14 +371,14 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.white,
+                              backgroundColor: Colors.red,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Manual',
                               style: TextStyle(
-                                color: Colors.red,
+                                color: Colors.white,
                                 fontSize: 18,
                               ),
                             ),
@@ -394,14 +394,14 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
+                              backgroundColor: Colors.white,
                               padding: EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Excel',
                               style: TextStyle(
-                                color: Colors.white,
+                                color: Colors.red,
                                 fontSize: 18,
                               ),
                             ),

@@ -237,11 +237,11 @@ class _BuatWargaPagePdfPenanggungState
                       children: [
                         Text("Ketentuan Upload/Update File Kartu Keluarga"),
                         SizedBox(width: 3),
-                        TextButton(
-                          onPressed: _ketentuanDialog,
+                         InkWell(
+                          onTap: _ketentuanDialog, 
                           child: Text(
                             'Klik Disini',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
                           ),
                         ),
                       ],

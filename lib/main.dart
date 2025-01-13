@@ -300,7 +300,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             //BUAT IURAN
-             Container(
+            Container(
               width: 470,
               height: 90,
               padding: const EdgeInsets.only(
@@ -338,8 +338,7 @@ class _MainScreenState extends State<MainScreen> {
                     const SizedBox(width: 14),
                     Text(
                       'Buat Pengumuman atau \n'
-                      'Informasi Untuk Warga'
-                      ,
+                      'Informasi Untuk Warga',
                       style: TextStyle(
                         color: Color(0xFF8B8B8B),
                         fontSize: 16,
@@ -439,7 +438,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
-                Container(
+            Container(
               width: 261,
               height: 50,
               padding: const EdgeInsets.only(
@@ -483,7 +482,6 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
 
-           
             //REKAP IURAN WARGA
             Container(
               width: 261,
@@ -505,7 +503,7 @@ class _MainScreenState extends State<MainScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  BuktiTransaksiPage()),
+                        builder: (context) => BuktiTransaksiPage()),
                   );
                 },
                 child: Row(
@@ -516,8 +514,7 @@ class _MainScreenState extends State<MainScreen> {
                     SvgPicture.asset('assets/images/ChartDonut.svg'),
                     const SizedBox(width: 14),
                     Text(
-                      'Laporan Iuran Tunai Warga'
-                      ,
+                      'Laporan Iuran Tunai Warga',
                       style: TextStyle(
                         color: Color(0xFF8B8B8B),
                         fontSize: 16,
@@ -573,7 +570,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
               ),
             ),
-             Container(
+            Container(
               width: 261,
               height: 90,
               padding: const EdgeInsets.only(
@@ -593,7 +590,7 @@ class _MainScreenState extends State<MainScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>  LaporanRevisiDataPage()),
+                        builder: (context) => LaporanRevisiDataPage()),
                   );
                 },
                 child: Row(
@@ -605,8 +602,7 @@ class _MainScreenState extends State<MainScreen> {
                     const SizedBox(width: 14),
                     Text(
                       'Laporan Revisi Perubahan\n'
-                      'Data Warga'
-                      ,
+                      'Data Warga',
                       style: TextStyle(
                         color: Color(0xFF8B8B8B),
                         fontSize: 16,
@@ -701,8 +697,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     const SizedBox(width: 14),
                     Text(
-                      'Rekap Kumpulan KK Warga'
-                      ,
+                      'Rekap Kumpulan KK Warga',
                       style: TextStyle(
                         color: Color(0xFF8B8B8B),
                         fontSize: 16,
@@ -715,7 +710,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
             //DATA WARGA
-        
+
             Divider(),
             Padding(
               padding:
@@ -771,62 +766,74 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       body: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image:
-                  AssetImage('assets/images/trr.png'),
-              fit: BoxFit.cover,
-            ),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/trr.png'),
+            fit: BoxFit.cover,
           ),
-          child: Container(
-            color: Colors.white.withOpacity(0.8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(
-                        text: 'Selamat Datang Di\n',
-                        style: TextStyle(
-                          color: Color(0xFF181C14),
-                          fontSize: 60,
-                          fontFamily: 'Figtree',
-                          fontWeight: FontWeight.w400,
-                          height: 0,
-                        ),
-                      ),
-                      TextSpan(
-                        text: alamatKavling,
-                        style: const TextStyle(
-                          color: Color(0xFF181C14),
-                          fontSize: 60,
-                          fontFamily: 'Figtree',
-                          fontWeight: FontWeight.w700,
-                          height: 0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'Layanan Digital Terpadu Untuk Warga RT 8-RW 1-Kelurahan Medokan Ayu Rungkut',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Color(0xFF181C14),
-                    fontSize: 18,
-                    fontFamily: 'Figtree',
-                    fontWeight: FontWeight.w400,
-                    height: 0,
-                  ),
-                ),
-              ],
+        ),
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.white.withOpacity(0.8),
             ),
-          )),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 40.0), 
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    RichText(
+                      textAlign: TextAlign.center,
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: 'Selamat Datang Di\n',
+                            style: TextStyle(
+                              color: Color(0xFF181C14),
+                              fontSize: 60,
+                              fontFamily: 'Figtree',
+                              fontWeight: FontWeight.w400,
+                              height: 1.2, // Sesuaikan jarak antar teks
+                            ),
+                          ),
+                          TextSpan(
+                            text: alamatKavling,
+                            style: const TextStyle(
+                              color: Color(0xFF181C14),
+                              fontSize: 60,
+                              fontFamily: 'Figtree',
+                              fontWeight: FontWeight.w700,
+                              height: 1.2,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Layanan Digital Terpadu Untuk Warga RT 8-RW 1-Kelurahan Medokan Ayu Rungkut',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color(0xFF181C14),
+                        fontSize: 18,
+                        fontFamily: 'Figtree',
+                        fontWeight: FontWeight.w400,
+                        height: 1.5, // Sesuaikan jarak antar baris
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

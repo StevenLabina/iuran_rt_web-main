@@ -163,7 +163,7 @@ class _LoginState extends State<Login> {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                    'assets/images/pexels-thelazyartist-1642125.jpg'),
+                    'assets/images/trr.png'),
                 fit: BoxFit.cover,
               ),
             ),

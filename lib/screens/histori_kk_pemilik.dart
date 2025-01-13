@@ -214,14 +214,14 @@ class _HistoriKkPemilikPageState extends State<HistoriKkPemilikPage> {
                          
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
+                          backgroundColor: Colors.red,
                           padding: EdgeInsets.symmetric(
                               horizontal: 24, vertical: 12),
                         ),
                         child: Text(
                           'KK Pemilik Rumah',
                           style: TextStyle(
-                            color: Colors.red,
+                            color: Colors.white,
                             fontSize: 18,
                           ),
                         ),
@@ -237,14 +237,14 @@ class _HistoriKkPemilikPageState extends State<HistoriKkPemilikPage> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
+                          backgroundColor: Colors.white,
                           padding: EdgeInsets.symmetric(
                               horizontal: 24, vertical: 12),
                         ),
                         child: Text(
                           'KK Penanggung Jawab',
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.red,
                             fontSize: 18,
                           ),
                         ),
