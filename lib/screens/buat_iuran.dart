@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:iuran_rt_web/screens/buat_iuran_ipl.dart';
 import 'package:iuran_rt_web/url.dart';
 import 'package:iuran_rt_web/main.dart';
+import 'package:iuran_rt_web/drawer.dart';
 
 //import 'package:firebase_messaging/firebase_messaging.dart';
 class TambahIuranPage extends StatefulWidget {
@@ -391,11 +392,9 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(

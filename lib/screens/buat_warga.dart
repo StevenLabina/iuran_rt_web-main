@@ -8,6 +8,7 @@ import 'package:iuran_rt_web/screens/buat_warga_csv.dart';
 import 'dart:convert';
 
 import 'package:iuran_rt_web/url.dart';
+import 'package:iuran_rt_web/drawer.dart';
 
 class BuatWargaPage extends StatefulWidget {
   @override
@@ -306,16 +307,9 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          },
-        ),
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(

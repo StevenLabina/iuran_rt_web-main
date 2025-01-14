@@ -7,10 +7,13 @@ import 'dart:convert';
 import 'package:excel/excel.dart';
 import 'package:iuran_rt_web/screens/bukti_transaksi.dart';
 import 'package:iuran_rt_web/url.dart';
+import 'package:iuran_rt_web/drawer.dart';
+
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:universal_html/html.dart' as html;
+
 
 class RekapIuranWargaPage extends StatefulWidget {
   @override
@@ -135,14 +138,11 @@ class _RekapIuranWargaPageState extends State<RekapIuranWargaPage> {
 Widget build(BuildContext context) {
   return Scaffold(
     backgroundColor: Color(0xFFFDECE8),
-    appBar: AppBar(
-      backgroundColor: Color(0xFFFDECE8),
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-        onPressed: () => Navigator.of(context).pop(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFDECE8),
+        elevation: 0,
       ),
-      
-    ),
+      drawer: MyDrawer(),
     body: Center( 
       child: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:iuran_rt_web/url.dart';
+import 'package:iuran_rt_web/drawer.dart';
 
 class LaporanRevisiDataPage extends StatefulWidget {
   @override
@@ -116,13 +117,11 @@ class _LaporanRevisiDataPageState extends State<LaporanRevisiDataPage> {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(
-      backgroundColor: Color(0xFFFDECE8),
-      leading: IconButton(
-        icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-        onPressed: () => Navigator.of(context).pop(),
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFDECE8),
+        elevation: 0,
       ),
-    ),
+      drawer: MyDrawer(),
     body: Container(
       color: Color(0xFFFDECE8),
       padding: const EdgeInsets.all(16.0),

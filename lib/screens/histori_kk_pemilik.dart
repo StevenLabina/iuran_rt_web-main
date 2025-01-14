@@ -12,6 +12,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'package:universal_html/html.dart' as html;
+import 'package:iuran_rt_web/drawer.dart';
 
 class HistoriKkPemilikPage extends StatefulWidget {
   @override
@@ -141,16 +142,9 @@ class _HistoriKkPemilikPageState extends State<HistoriKkPemilikPage> {
       backgroundColor: Color(0xFFFDECE8),
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          },
-        ),
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:iuran_rt_web/url.dart';
 import 'package:iuran_rt_web/main.dart';
+import 'package:iuran_rt_web/drawer.dart';
+
 
 //import 'package:firebase_messaging/firebase_messaging.dart';
 class TambahInformasiPage extends StatefulWidget {
@@ -307,11 +309,9 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(

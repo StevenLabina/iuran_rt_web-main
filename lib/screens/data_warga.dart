@@ -11,6 +11,7 @@ import 'package:iuran_rt_web/screens/laporan_revisi.dart';
 import 'package:iuran_rt_web/screens/login.dart';
 import 'package:iuran_rt_web/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:iuran_rt_web/drawer.dart';
 
 class DataPendudukPage extends StatefulWidget {
   @override
@@ -159,14 +160,18 @@ class _DataPendudukPageState extends State<DataPendudukPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-       
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
+      // appBar: AppBar(
+      //   backgroundColor: Color(0xFFFDECE8),
+      //   leading: IconButton(
+      //     icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+      //     onPressed: () => Navigator.of(context).pop(),
+      //   ),
+      // ),
       body: Container(
         color: Color(0xFFFDECE8),
         padding: const EdgeInsets.all(16.0),
