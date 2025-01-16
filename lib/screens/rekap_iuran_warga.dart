@@ -83,13 +83,13 @@ class _RekapIuranWargaPageState extends State<RekapIuranWargaPage> {
     // Menambahkan header
     List<String> headers = [
       'No Kavling',
-      'Alamat Kavling',
       'Nama Pemilik',
       'Penanggung Jawab',
       'No. Telp Pemilik Rumah',
       'No. Telp Penanggung Jawab',
       'Nama Iuran',
       'Nominal Iuran',
+      'Status',
       'Tanggal Jatuh Tempo'
     ];
     sheetObject.appendRow(headers);
@@ -98,13 +98,13 @@ class _RekapIuranWargaPageState extends State<RekapIuranWargaPage> {
     for (var item in dataIuran) {
       List<String> row = [
         item['no_kavling'] ?? '-',
-        item['alamat_kavling'] ?? '-',
         item['nama_pemilik_rumah'] ?? '-',
         item['nama_penanggung_jawab'] ?? '-',
         item['no_telpon_pemilik'] ?? '-',
         item['no_telpon_penanggung_jawab'] ?? '-',
         item['nama_iuran'] ?? '-',
         item['nominal_iuran'] ?? '-',
+        item['status'] ?? '-',
         item['batas_pembayaran'] ?? '-',
       ];
       sheetObject.appendRow(row);
@@ -118,12 +118,12 @@ class _RekapIuranWargaPageState extends State<RekapIuranWargaPage> {
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       final url = html.Url.createObjectUrlFromBlob(blob);
       final anchor = html.AnchorElement(href: url)
-        ..setAttribute("download", "DataIuranWarga.xlsx")
+        ..setAttribute("download", "Laporan Transaksi Iuran Warga.xlsx")
         ..click();
       html.Url.revokeObjectUrl(url);
     } else {
       Directory directory = await getApplicationDocumentsDirectory();
-      String filePath = "${directory.path}/DataIuranWarga.xlsx";
+      String filePath = "${directory.path}/Laporan Transaksi Iuran Warga.xlsx";
       File(filePath)
         ..createSync(recursive: true)
         ..writeAsBytesSync(excel.encode()!);
@@ -160,7 +160,8 @@ Widget build(BuildContext context) {
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  'Rekap Warga Yang Belum Bayar Iuran',
+                  //'Rekap Warga Yang Belum Bayar Iuran',
+                  'Laporan Transaksi Iuran Warga',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF181C14),
@@ -212,7 +213,7 @@ Widget build(BuildContext context) {
                                     columnSpacing: isWideScreen ? 10 : 20,
                                     columns: [
                                       DataColumn(label: Text('No Kavling')),
-                                      DataColumn(label: Text('Alamat Kavling')),
+                                     
                                       DataColumn(label: Text( 'Pemilik Rumah')),
                                       DataColumn(label: Text('Penanggung Jawab')),
                                       DataColumn(
@@ -221,6 +222,7 @@ Widget build(BuildContext context) {
                                           label: Text('No. Telepon Penanggung Jawab')),
                                       DataColumn(label: Text('Nama Iuran')),
                                       DataColumn(label: Text('Nominal Iuran')),
+                                       DataColumn(label: Text('Status')),
                                       DataColumn(label: Text('Tanggal Jatuh Tempo')),
                                     ],
                                     rows: dataIuran.map((item) {
@@ -229,10 +231,7 @@ Widget build(BuildContext context) {
                                           alignment: Alignment.center,
                                           child: Text(item['no_kavling'] ?? '-'),
                                         )),
-                                        DataCell(Align(
-                                          alignment: Alignment.center,
-                                          child: Text(item['alamat_kavling'] ?? '-'),
-                                        )),
+                                      
                                         DataCell(Align(
                                           alignment: Alignment.center,
                                           child: Text(item['nama_pemilik_rumah'] ?? '-'),
@@ -256,6 +255,10 @@ Widget build(BuildContext context) {
                                         DataCell(Align(
                                           alignment: Alignment.center,
                                           child: Text(item['nominal_iuran'] ?? '-'),
+                                        )),
+                                          DataCell(Align(
+                                          alignment: Alignment.center,
+                                          child: Text(item['status'] ?? '-'),
                                         )),
                                         DataCell(Align(
                                           alignment: Alignment.center,

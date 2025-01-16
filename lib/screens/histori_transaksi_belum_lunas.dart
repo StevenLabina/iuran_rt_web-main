@@ -12,12 +12,12 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:universal_html/html.dart' as html;
 import 'package:iuran_rt_web/drawer.dart';
 
-class HistoriTransaksiPage extends StatefulWidget {
+class HistoriTransaksiBelumPage extends StatefulWidget {
   @override
-  _HistoriTransaksiPageState createState() => _HistoriTransaksiPageState();
+  _HistoriTransaksiBelumPageState createState() => _HistoriTransaksiBelumPageState();
 }
 
-class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
+class _HistoriTransaksiBelumPageState extends State<HistoriTransaksiBelumPage> {
   TextEditingController searchController = TextEditingController();
   List<dynamic> dataIuran = [];
   bool isLoading = false;
@@ -34,7 +34,7 @@ class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
   });
 
   final response = await http.post(
-    Uri.parse('${ApiUrls.baseUrl}/histori_all.php'),
+    Uri.parse('${ApiUrls.baseUrl}/histori_belum_lunas.php'),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -89,25 +89,21 @@ class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
       'Nama Iuran',
       'Nominal Iuran',
       'Tanggal Jatuh Tempo',
-      'Tanggal Lunas',
       'Status',
-      'Metode'
-      
     ];
     sheetObject.appendRow(headers);
 
     // Menambahkan data
     for (var item in dataIuran) {
       List<String> row = [
-        item['r_no_kavling'] ?? '-',
-        item['r_nama_pemilik'] ?? '-',
-        item['r_nama_penanggung_jawab'] ?? '-',
-        item['r_nama_iuran'] ?? '-',
-        item['r_nominal_iuran'] ?? '-',
-        item['r_batas_pembayaran'] ?? '-',
-        item['r_tanggal_lunas'] ?? '-',
-        item['r_status'] ?? '-',
-        item['r_metode'] ?? '-',
+        item['no_kavling'] ?? '-',
+        item['nama_pemilik'] ?? '-',
+        item['nama_penanggung_jawab'] ?? '-',
+        item['nama_iuran'] ?? '-',
+        item['nominal_iuran'] ?? '-',
+        item['batas_pembayaran'] ?? '-',
+        item['status'] ?? '-',
+      
 
       ];
       sheetObject.appendRow(row);
@@ -121,12 +117,12 @@ class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
       final url = html.Url.createObjectUrlFromBlob(blob);
       final anchor = html.AnchorElement(href: url)
-        ..setAttribute("download", "Rekap Iuran Warga Lunas.xlsx")
+        ..setAttribute("download", "Rekap Iuran Warga Belum Lunas.xlsx")
         ..click();
       html.Url.revokeObjectUrl(url);
     } else {
       Directory directory = await getApplicationDocumentsDirectory();
-      String filePath = "${directory.path}/Rekap Iuran Warga Lunas.xlsx";
+      String filePath = "${directory.path}/Rekap Iuran Warga Belum Lunas.xlsx";
       File(filePath)
         ..createSync(recursive: true)
         ..writeAsBytesSync(excel.encode()!);
@@ -164,7 +160,7 @@ class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
                 // Icon(Icons.bar_chart, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
                 const SizedBox(width: 20),
                 Text(
-                  'Rekap Iuran Warga Yang Lunas',
+                  'Rekap Iuran Warga Yang Belum Lunas',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF181C14),
@@ -212,28 +208,23 @@ class _HistoriTransaksiPageState extends State<HistoriTransaksiPage> {
                                   DataColumn(label: Text('Nama Iuran')),
                                   DataColumn(label: Text('Nominal Iuran')),
                                   DataColumn(label: Text('Tanggal Jatuh Tempo')),
-                                  DataColumn(label: Text('Tanggal Lunas')),
                                   DataColumn(label: Text('Status')),
-                                  DataColumn(label: Text('Metode')),
+                                 
                                 ],
                                 rows: dataIuran.map((item) {
                                   return DataRow(cells: [
-                                    DataCell(Text(item['r_no_kavling'] ?? '-')),
+                                    DataCell(Text(item['no_kavling'] ?? '-')),
                                     DataCell(Text(
-                                        item['r_nama_pemilik'] ?? '-')),
+                                        item['nama_pemilik'] ?? '-')),
                                     DataCell(Text(
-                                        item['r_nama_penanggung_jawab'] ?? '-')),
-                                    DataCell(Text(item['r_nama_iuran'] ?? '-')),
+                                        item['nama_penanggung_jawab'] ?? '-')),
+                                    DataCell(Text(item['nama_iuran'] ?? '-')),
                                     DataCell(
-                                        Text(item['r_nominal_iuran'] ?? '-')),
+                                        Text(item['nominal_iuran'] ?? '-')),
                                     DataCell(
-                                        Text(item['r_batas_pembayaran'] ?? '-')),
+                                        Text(item['batas_pembayaran'] ?? '-')),
                                     DataCell(
-                                        Text(item['r_tanggal_lunas'] ?? '-')),
-                                    DataCell(
-                                        Text(item['r_status'] ?? '-')),
-                                    DataCell(
-                                        Text(item['r_metode'] ?? '-')),
+                                        Text(item['status'] ?? '-')),
                                   ]);
                                 }).toList(),
                               ),

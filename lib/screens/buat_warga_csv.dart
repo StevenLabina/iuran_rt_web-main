@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:typed_data';
 import 'package:flutter/foundation.dart';
+import 'package:iuran_rt_web/drawer.dart';
 import 'dart:convert';
 
 import 'package:iuran_rt_web/url.dart';
@@ -242,16 +243,9 @@ class _BuatWargaCsvPageState extends State<BuatWargaPageCsv> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          },
-        ),
+      
       ),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(

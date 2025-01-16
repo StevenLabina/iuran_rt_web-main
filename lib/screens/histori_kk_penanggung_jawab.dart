@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:excel/excel.dart';
-import 'package:iuran_rt_web/main.dart';
+import 'package:iuran_rt_web/drawer.dart';
 import 'package:iuran_rt_web/screens/histori_kk_pemilik.dart';
 import 'package:iuran_rt_web/url.dart';
 import 'dart:io';
@@ -143,16 +143,8 @@ class _HistoriKkPenanggungJawabPageState extends State<HistoriKkPenanggungJawabP
       backgroundColor: Color(0xFFFDECE8),
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-         onPressed: () {
-              Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => MyApp()),
-            );
-          },
-        ),
       ),
+      drawer: MyDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

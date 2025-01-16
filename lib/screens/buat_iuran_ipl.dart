@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:iuran_rt_web/drawer.dart';
 import 'package:iuran_rt_web/screens/buat_iuran.dart';
 import 'package:iuran_rt_web/url.dart';
 import 'package:iuran_rt_web/main.dart';
@@ -270,11 +271,9 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+      
       ),
+     drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(
