@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iuran_rt_web/drawer.dart';
 
 class PetunjukPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFDECE8),
-      appBar: AppBar(
+        appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+        elevation: 0,
       ),
+      drawer: MyDrawer(),
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
