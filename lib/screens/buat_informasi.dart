@@ -317,8 +317,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/pexels-thelazyartist-1642125.jpg'),
+                image: AssetImage('assets/images/pexels-thelazyartist-1642125.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -327,7 +326,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
             color: Color(0xFFFDECE8),
           ),
           Padding(
-            padding: const EdgeInsets.all(80),
+            padding: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -348,174 +347,236 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
                             color: Colors.black,
                             size: 40,
                           ),
-                          const SizedBox(width: 20),
-                          Text(
-                            'Informasi Dari Pengurus RT Kepada Warga',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Color(0xFF181C14),
-                              fontSize: 24,
-                              fontFamily: 'Figtree',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
+                          const SizedBox(width: 8), // Mengurangi jarak dari 20 menjadi 8
+                          Flexible(
+                            child: Text(
+                              'Informasi Dari Pengurus RT Kepada Warga',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Color(0xFF181C14),
+                                fontSize: 24,
+                                fontFamily: 'Figtree',
+                                fontWeight: FontWeight.w600,
+                                height: 1.2,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.info_outline,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _InformasiController,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      hintText: 'Ketik informasi yang akan disampaikan...',
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    _buildInputField(
+                      context,
+                      _InformasiController,
+                      'Ketik informasi yang akan disampaikan...',
+                      Icons.info_outline,
                     ),
                     SizedBox(height: 16),
-
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                SizedBox(width: 12),
-                                Text('Berlaku dari'),
-                                SizedBox(width: 16),
-                                Expanded(
-                                    child: TextButton(
-                                  onPressed: () => _selectDate1(context),
-                                  child: GestureDetector(
-                                    onTap: () => _selectDate1(context),
-                                    child: AbsorbPointer(
-                                      child: TextFormField(
-                                        controller: _1tanggalController,
-                                        textAlign: TextAlign.center,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 20),
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          hintText: 'Tanggal',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )),
-                              ],
-                            ),
-                          ),
-                          Text('sampai dengan'),
-                          SizedBox(width: 16),
-                          // Nominal Iuran Field
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: TextButton(
-                                  onPressed: () => _selectDate2(context),
-                                  child: GestureDetector(
-                                    onTap: () => _selectDate2(context),
-                                    child: AbsorbPointer(
-                                      child: TextFormField(
-                                        controller: _2tanggalController,
-                                        textAlign: TextAlign.center,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                           contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                          hintText: 'Tanggal',
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                )),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                    // Menggunakan LayoutBuilder untuk menentukan tampilan
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        if (constraints.maxWidth > 600) {
+                          // Tampilan untuk laptop
+                          return _buildDateRangeField(context);
+                        } else {
+                          // Tampilan untuk tablet dan mobile
+                          return Column(
+                            children: [
+                              _buildSingleDateField(context, _1tanggalController, _selectDate1, 'Berlaku dari'),
+                              SizedBox(height: 16),
+                              _buildSingleDateField(context, _2tanggalController, _selectDate2, 'Sampai dengan'),
+                            ],
+                          );
+                        }
+                      },
                     ),
                     SizedBox(height: 24),
-                    // Tombol Simpan
-                    Center(
-                      child: Container(
-                        width: 600,
-                        height: 72,
-                        decoration: ShapeDecoration(
-                          color: Color(0xFFED401C),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: TextButton(
-                          onPressed: _showConfirmationDialog,
-                          child: Text(
-                            'Kirim',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Figtree',
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    _buildSubmitButton(),
                   ],
                 ),
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildInputField(BuildContext context, TextEditingController controller, String hintText, IconData icon) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 72,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Color(0xFF909090)),
+          SizedBox(width: 12),
+          Expanded(
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: hintText,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDateRangeField(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 72,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                SizedBox(width: 12),
+                // Menambahkan ikon kalender di sini
+                Icon(Icons.calendar_today, color: Color(0xFF909090)),
+                SizedBox(width: 12),
+                Text('Berlaku dari'),
+                SizedBox(width: 16),
+                Expanded(
+                  child: TextButton(
+                    onPressed: () => _selectDate1(context),
+                    child: AbsorbPointer(
+                      child: TextFormField(
+                        controller: _1tanggalController,
+                        textAlign: TextAlign.center,
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          hintText: 'Tanggal',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(width: 12),
+          // Menambahkan ikon kalender di sini
+          Icon(Icons.calendar_today, color: Color(0xFF909090)),
+          SizedBox(width: 16),
+          Text('sampai dengan'),
+          SizedBox(width: 16),
+          Expanded(
+            child: TextButton(
+              onPressed: () => _selectDate2(context),
+              child: AbsorbPointer(
+                child: TextFormField(
+                  controller: _2tanggalController,
+                  textAlign: TextAlign.center,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    hintText: 'Tanggal',
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSingleDateField(BuildContext context, TextEditingController controller, Function onTap, String label) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.9,
+      height: 72,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Row(
+        children: [
+          SizedBox(width: 12),
+          // Menambahkan ikon kalender di sini
+          Icon(Icons.calendar_today, color: Color(0xFF909090)),
+          SizedBox(width: 12),
+          Text(label),
+          SizedBox(width: 16),
+          Expanded(
+            child: TextButton(
+              onPressed: () => onTap(context),
+              child: AbsorbPointer(
+                child: TextFormField(
+                  controller: controller,
+                  textAlign: TextAlign.center,
+                  readOnly: true,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    hintText: 'Tanggal',
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSubmitButton() {
+    return Center(
+      child: Container(
+        width: 500,
+        height: 50,
+        decoration: ShapeDecoration(
+          color: Color(0xFFED401C),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+        child: TextButton(
+          onPressed: _showConfirmationDialog,
+          child: Text(
+            'Kirim',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              fontFamily: 'Figtree',
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ),
       ),
     );
   }

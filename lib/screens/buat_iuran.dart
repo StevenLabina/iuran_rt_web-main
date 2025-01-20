@@ -388,6 +388,10 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Mendapatkan ukuran layar
+    final screenSize = MediaQuery.of(context).size;
+    final isMobile = screenSize.width < 600; // Misalkan 600px sebagai batas untuk mobile
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -400,8 +404,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/pexels-thelazyartist-1642125.jpg'),
+                image: AssetImage('assets/images/pexels-thelazyartist-1642125.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -410,7 +413,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
             color: Color(0xFFFDECE8),
           ),
           Padding(
-            padding: const EdgeInsets.all(80),
+            padding: EdgeInsets.all(isMobile ? 16 : 80), // Padding lebih kecil untuk mobile
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -418,7 +421,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 567,
+                      width: isMobile ? screenSize.width * 0.9 : 567,
                       height: 80,
                       padding: const EdgeInsets.all(15),
                       child: Row(
@@ -426,8 +429,6 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // Icon(Icons.monetization_on,
-                          //     size: 40, color: Color.fromARGB(255, 0, 0, 0)),
                           SvgPicture.asset(
                             'assets/images/HandCoins.svg',
                             color: Colors.black,
@@ -435,63 +436,62 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                             height: 40,
                           ),
                           const SizedBox(width: 20),
-                          Text(
-                            'Buat Tagihan Iuran',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color(0xFF181C14),
-                              fontSize: 40,
-                              fontFamily: 'Figtree',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
+                          Flexible(
+                            child: Text(
+                              'Buat Tagihan Iuran',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color(0xFF181C14),
+                                fontSize: isMobile ? 24 : 40, // Ukuran font lebih kecil untuk mobile
+                                fontFamily: 'Figtree',
+                                fontWeight: FontWeight.w600,
+                                height: 1.2, // Tinggi baris untuk menghindari tumpang tindih
+                              ),
+                              maxLines: 2, // Maksimal 2 baris
+                              overflow: TextOverflow.ellipsis, // Menghindari overflow
                             ),
                           ),
                         ],
                       ),
                     ),
-                     Container(
-                      width: 567,
+                    Container(
+                      width: isMobile ? screenSize.width * 0.9 : 567,
                       height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // Tombol pertama
                           ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Khusus',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
                               ),
                             ),
                           ),
                           SizedBox(width: 16),
-                          // Tombol kedua
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => TambahIuranPLPage()),
+                                MaterialPageRoute(builder: (context) => TambahIuranPLPage()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Pengelolaan Lingkungan',
                               style: TextStyle(
                                 color: Colors.red,
-                                fontSize: 18,
+                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
                               ),
                             ),
                           ),
@@ -499,7 +499,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                       ),
                     ),
                     Container(
-                      width: 1000,
+                      width: isMobile ? screenSize.width * 0.9 : 1000,
                       height: 72,
                       padding: const EdgeInsets.all(20),
                       decoration: ShapeDecoration(
@@ -521,8 +521,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                                   child: TextFormField(
                                     controller: _namaIuranController,
                                     decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -534,12 +533,9 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                             ),
                           ),
                           SizedBox(width: 16),
-
-                          // Nominal Iuran Field
                           Expanded(
                             child: Row(
                               children: [
-                           
                                 Text("Rp"),
                                 SizedBox(width: 12),
                                 Expanded(
@@ -547,8 +543,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                                     controller: _nominalIuranController,
                                     keyboardType: TextInputType.number,
                                     decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 20),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -556,21 +551,11 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                                     ),
                                     onChanged: (value) {
                                       if (value.isNotEmpty) {
-                                       
-                                        String numericValue =
-                                            value.replaceAll(RegExp(r'\D'), '');
-
-                                        
-                                        String formattedValue =
-                                            NumberFormat.decimalPattern('id')
-                                                .format(
-                                          int.parse(numericValue.isEmpty
-                                              ? '0'
-                                              : numericValue),
+                                        String numericValue = value.replaceAll(RegExp(r'\D'), '');
+                                        String formattedValue = NumberFormat.decimalPattern('id').format(
+                                          int.parse(numericValue.isEmpty ? '0' : numericValue),
                                         );
-
-                                        _nominalIuranController.value =
-                                            TextEditingValue(
+                                        _nominalIuranController.value = TextEditingValue(
                                           text: formattedValue,
                                           selection: TextSelection.collapsed(
                                             offset: formattedValue.length,
@@ -587,9 +572,8 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    // Batas Transaksi Field
                     Container(
-                      width: 1000,
+                      width: isMobile ? screenSize.width * 0.9 : 1000,
                       height: 72,
                       padding: const EdgeInsets.all(20),
                       decoration: ShapeDecoration(
@@ -608,12 +592,12 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                               controller: _batasTransaksiController,
                               readOnly: true,
                               decoration: InputDecoration(
-                                 contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                  hintText: 'Pilih Tanggal Batas Transaksi'),
+                                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                hintText: 'Pilih Tanggal Batas Transaksi',
+                              ),
                             ),
                           ),
                           IconButton(
@@ -627,7 +611,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                     Center(
                       child: Container(
                         width: 500,
-                        height: 72,
+                        height: 50,
                         decoration: ShapeDecoration(
                           color: Color(0xFFED401C),
                           shape: RoundedRectangleBorder(
@@ -640,7 +624,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                             'Kirim',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 20,
+                              fontSize: isMobile ? 16 : 20, // Ukuran font lebih kecil untuk mobile
                               fontFamily: 'Figtree',
                               fontWeight: FontWeight.w500,
                             ),
@@ -648,8 +632,6 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                         ),
                       ),
                     ),
-                  
-                   
                   ],
                 ),
               ),

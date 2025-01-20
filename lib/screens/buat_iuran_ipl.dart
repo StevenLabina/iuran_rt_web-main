@@ -267,20 +267,23 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Mendapatkan ukuran layar
+    final screenSize = MediaQuery.of(context).size;
+    final isMobile = screenSize.width < 600; // Misalkan 600px sebagai batas untuk mobile
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Color(0xFFFDECE8),
-      
+        elevation: 0,
       ),
-     drawer: MyDrawer(),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/pexels-thelazyartist-1642125.jpg'),
+                image: AssetImage('assets/images/pexels-thelazyartist-1642125.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -289,7 +292,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
             color: Color(0xFFFDECE8),
           ),
           Padding(
-            padding: const EdgeInsets.all(80),
+            padding: EdgeInsets.all(isMobile ? 16 : 80), // Padding lebih kecil untuk mobile
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -297,7 +300,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 567,
+                      width: isMobile ? screenSize.width * 0.9 : 567,
                       height: 80,
                       padding: const EdgeInsets.all(15),
                       child: Row(
@@ -305,8 +308,6 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // Icon(Icons.monetization_on,
-                          //     size: 40, color: Color.fromARGB(255, 0, 0, 0)),
                           SvgPicture.asset(
                             'assets/images/HandCoins.svg',
                             color: Colors.black,
@@ -314,65 +315,62 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                             height: 40,
                           ),
                           const SizedBox(width: 20),
-                          Text(
-                            'Buat Tagihan Iuran',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Color(0xFF181C14),
-                              fontSize: 40,
-                              fontFamily: 'Figtree',
-                              fontWeight: FontWeight.w600,
-                              height: 0,
+                          Flexible(
+                            child: Text(
+                              'Buat Tagihan Iuran',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: Color(0xFF181C14),
+                                fontSize: isMobile ? 24 : 40, // Ukuran font lebih kecil untuk mobile
+                                fontFamily: 'Figtree',
+                                fontWeight: FontWeight.w600,
+                                height: 1.2, // Tinggi baris untuk menghindari tumpang tindih
+                              ),
+                              maxLines: 2, // Maksimal 2 baris
+                              overflow: TextOverflow.ellipsis, // Menghindari overflow
                             ),
                           ),
                         ],
                       ),
                     ),
-                     Container(
-                      width: 567,
+                    Container(
+                      width: isMobile ? screenSize.width * 0.9 : 567,
                       height: 50,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          // Tombol pertama
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pushReplacement(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => TambahIuranPage()),
+                                MaterialPageRoute(builder: (context) => TambahIuranPage()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.white,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Khusus',
                               style: TextStyle(
                                 color: Colors.red,
-                                fontSize: 18,
+                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
                               ),
                             ),
                           ),
                           SizedBox(width: 16),
-                          // Tombol kedua
                           ElevatedButton(
-                            onPressed: () {
-                             
-                            },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.red,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                             ),
                             child: Text(
                               'Iuran Pengelolaan Lingkungan',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 18,
+                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
                               ),
                             ),
                           ),
@@ -469,7 +467,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                     Center(
                       child: Container(
                         width: 500,
-                        height: 72,
+                        height: 50,
                         decoration: ShapeDecoration(
                           color: Color(0xFFED401C),
                           shape: RoundedRectangleBorder(
