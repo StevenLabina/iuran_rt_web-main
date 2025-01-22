@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:iuran_rt_web/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -94,7 +93,6 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
     _loadAlamatKavling();
-    // _fetchIuranData();
     _jumlahKavling();
   }
 
@@ -106,53 +104,11 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  // Future<void> _fetchIuranData() async {
-  //   try {
-  //     final prefs = await SharedPreferences.getInstance();
-  //     int? idUser = prefs.getInt("idUser");
-
-  //     if (idUser == null) {
-  //       throw Exception("User ID is null");
-  //     }
-
-  //     print("Fetched ID User: $idUser");
-
-  //     final response = await http.post(
-  //       Uri.parse('${ApiUrls.baseUrl}/iuran_terdekat.php'),
-  //       body: {
-  //         "id_warga": idUser.toString(),
-  //       },
-  //     );
-  //     print("Response status: ${response.statusCode}");
-  //     print("Response body: ${response.body}");
-
-  //     if (response.statusCode == 200) {
-  //       final data = jsonDecode(response.body);
-
-  //       if (data['result'] == 'success' && data.containsKey('data')) {
-  //         setState(() {
-  //           iuranList = List.from(data['data']);
-  //         });
-  //       } else if (data['result'] == 'error' && data.containsKey('message')) {
-  //         throw Exception('Server Error: ${data['message']}');
-  //       } else {
-  //         throw Exception('Unexpected server response');
-  //       }
-  //     } else {
-  //       throw Exception(
-  //           'Failed to connect to server with status code ${response.statusCode}');
-  //     }
-  //   } catch (e) {
-  //     print("Error fetching iuran data: $e");
-  //   }
-  // }
-
   Future<void> _jumlahKavling() async {
     try {
-      // Ambil nilai dari TextField atau set langsung ke variabel total
       total = totalController.text.isNotEmpty
           ? totalController.text
-          : '0'; // Default ke '0' jika kosong
+          : '0';
 
       final response = await http.post(
         Uri.parse('${ApiUrls.baseUrl}/jumlahKavling.php'),
@@ -168,7 +124,7 @@ class _MainScreenState extends State<MainScreen> {
 
         if (data['result'] == 'success' && data.containsKey('total_data')) {
           setState(() {
-            total = data['total_data'].toString(); // Perbaikan di sini
+            total = data['total_data'].toString();
           });
         } else if (data['result'] == 'error' && data.containsKey('message')) {
           throw Exception('Server Error: ${data['message']}');
@@ -212,14 +168,16 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Stack(
           children: [
+            // Layered white color with opacity
             Container(
               color: Colors.white.withOpacity(0.8),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
+            Positioned(
+              bottom: 0, // memastikan posisi di bawah layar
+              left: 0,
+              right: 0,
               child: Padding(
-                padding: const EdgeInsets.only(
-                    bottom: 40.0), 
+                padding: const EdgeInsets.only(bottom: 40.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -229,21 +187,29 @@ class _MainScreenState extends State<MainScreen> {
                       textAlign: TextAlign.center,
                       text: TextSpan(
                         children: [
-                          const TextSpan(
+                          TextSpan(
                             text: 'Selamat Datang Di\n',
                             style: TextStyle(
                               color: Color(0xFF181C14),
-                              fontSize: 60,
+                              fontSize: MediaQuery.of(context).size.width > 600
+                                  ? 50  // Ukuran lebih besar untuk tablet/laptop
+                                  : (MediaQuery.of(context).size.width > 400
+                                      ? 40  // Ukuran medium untuk tablet/ipad
+                                      : 30), // Ukuran kecil untuk ponsel
                               fontFamily: 'Figtree',
                               fontWeight: FontWeight.w400,
-                              height: 1.2, // Sesuaikan jarak antar teks
+                              height: 1.2, 
                             ),
                           ),
                           TextSpan(
                             text: alamatKavling,
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Color(0xFF181C14),
-                              fontSize: 60,
+                              fontSize: MediaQuery.of(context).size.width > 600
+                                  ? 50 
+                                  : (MediaQuery.of(context).size.width > 400
+                                      ? 40
+                                      : 30), 
                               fontFamily: 'Figtree',
                               fontWeight: FontWeight.w700,
                               height: 1.2,
@@ -261,7 +227,7 @@ class _MainScreenState extends State<MainScreen> {
                         fontSize: 18,
                         fontFamily: 'Figtree',
                         fontWeight: FontWeight.w400,
-                        height: 1.5, // Sesuaikan jarak antar baris
+                        height: 1.5, 
                       ),
                     ),
                   ],
