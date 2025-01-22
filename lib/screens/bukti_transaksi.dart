@@ -223,17 +223,31 @@ Widget build(BuildContext context) {
             children: [
               Icon(Icons.money, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
               const SizedBox(width: 20),
-              Text(
-                'Validasi Pengurus Tehadap Pembayaran Tunai Warga ',
+              RichText(
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF181C14),
-                  fontSize: 40,
-                  fontFamily: 'Figtree',
-                  fontWeight: FontWeight.w600,
-                  height: 0,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: MediaQuery.of(context).size.width > 1200
+                          ? 'Validasi Pengurus Terhadap Pembayaran Tunai Warga' // Untuk laptop/desktop
+                          : (MediaQuery.of(context).size.width > 1000
+                              ? 'Validasi Pengurus Terhadap Pembayaran\nTunai Warga' // Untuk tablet/iPad
+                              : 'Validasi Pengurus Terhadap\nPembayaran Tunai Warga'), // Untuk HP
+                      style: TextStyle(
+                        color: Color(0xFF181C14),
+                        fontSize: MediaQuery.of(context).size.width > 600
+                            ? 40 // Ukuran besar untuk tablet/laptop
+                            : (MediaQuery.of(context).size.width > 400
+                                ? 30 // Ukuran medium untuk tablet/iPad
+                                : 24), // Ukuran kecil untuk ponsel
+                        fontFamily: 'Figtree',
+                        fontWeight: FontWeight.w600,
+                        height: 1.2, // Mengatur tinggi baris agar lebih rapi
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              )
             ],
           ),
           SizedBox(height: 16),

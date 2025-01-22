@@ -160,17 +160,22 @@ Widget build(BuildContext context) {
                 ),
                 const SizedBox(width: 20),
                 Text(
-                  //'Rekap Warga Yang Belum Bayar Iuran',
-                  'Laporan Transaksi Iuran Warga',
+                  MediaQuery.of(context).size.width > 800
+                      ? 'Laporan Transaksi Iuran Warga' // Untuk laptop/desktop, satu baris
+                      : 'Laporan Transaksi\nIuran Warga', // Untuk tablet/iPad dan HP, dua atau tiga baris
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF181C14),
-                    fontSize: 40,
+                    fontSize: MediaQuery.of(context).size.width > 600
+                        ? 40 // Ukuran besar untuk laptop/desktop
+                        : (MediaQuery.of(context).size.width > 400
+                            ? 30 // Ukuran medium untuk tablet/iPad
+                            : 24), // Ukuran kecil untuk ponsel
                     fontFamily: 'Figtree',
                     fontWeight: FontWeight.w600,
-                    height: 0,
+                    height: 1.2, // Mengatur tinggi baris agar lebih rapi
                   ),
-                ),
+                )
               ],
             ),
             SizedBox(height: 16),
