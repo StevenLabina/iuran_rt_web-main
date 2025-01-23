@@ -158,384 +158,382 @@ class _DataPendudukPageState extends State<DataPendudukPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-        backgroundColor: Color(0xFFFDECE8),
-        elevation: 0,
+Widget build(BuildContext context) {
+  // Mengambil lebar layar saat ini
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  return Scaffold(
+    appBar: AppBar(
+      backgroundColor: Color(0xFFFDECE8),
+      elevation: 0,
+    ),
+    drawer: MyDrawer(),
+    body: Container(
+      color: Color(0xFFFDECE8),
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/UsersFour.svg',
+                color: Colors.black,
+                width: 40,
+                height: 40,
+              ),
+              const SizedBox(width: 20),
+              Text(
+                'Data Warga',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF181C14),
+                  fontSize: 40,
+                  fontFamily: 'Figtree',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                ),
+              ),
+            ],
+          ),
+          TextField(
+            controller: searchController,
+            decoration: InputDecoration(
+              labelText: 'Cari Berdasarkan No Kavling/Nama Penanggung Jawab/Nama Pemilik Rumah ',
+              prefixIcon: Icon(Icons.search),
+              border: OutlineInputBorder(),
+            ),
+            onChanged: (value) {
+              fetchPendudukData(value);
+            },
+          ),
+          SizedBox(height: 16),
+          Expanded(
+            child: isLoading
+                ? Center(child: CircularProgressIndicator())
+                : dataPenduduk.isEmpty
+                    ? Center(
+                        child: Text(
+                          'Data tidak ditemukan',
+                          style: GoogleFonts.lato(color: Colors.black),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: dataPenduduk.length,
+                        itemBuilder: (context, index) {
+                          final penduduk = dataPenduduk[index];
+                          return _buildCard(
+                            penduduk['no_kavling'] ?? 'N/A',
+                            penduduk['alamat_kavling'] ?? 'N/A',
+                            penduduk['nama_pemilik_rumah'] ?? 'N/A',
+                            penduduk['nama_penanggung_jawab'] ?? 'N/A',
+                            penduduk['no_telpon_pemilik_rumah'] ?? 'N/A',
+                            penduduk['no_telpon_penanggung_jawab'] ?? 'N/A',
+                            penduduk['no_kk_pemilik_rumah'] ?? 'N/A',
+                            penduduk['no_kk_penanggung_jawab'] ?? 'N/A',
+                            penduduk['id'] ?? 0,
+                            penduduk['pengurus_rt'] ?? 0,
+                            screenWidth,  // Menambahkan parameter lebar layar untuk menentukan tampilan
+                          );
+                        },
+                      ),
+          ),
+        ],
       ),
-      drawer: MyDrawer(),
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xFFFDECE8),
-      //   leading: IconButton(
-      //     icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-      //     onPressed: () => Navigator.of(context).pop(),
-      //   ),
-      // ),
-      body: Container(
-        color: Color(0xFFFDECE8),
+    ),
+  );
+}
+
+Widget _buildCard(
+  String noKavling,
+  String alamatKavling,
+  String pemilik,
+  String penanggungJawab,
+  String noTelponPemilik,
+  String noTelponPenanggungJawab,
+  String noKkPemilikRumah,
+  String noKkPenanggungJawab,
+  dynamic id,
+  int pengurusRt,
+  double screenWidth,  // Menambahkan parameter lebar layar untuk menentukan tampilan
+) {
+  int parsedId = int.tryParse(id.toString()) ?? 0;
+  String no_kk_pemilik = noKkPemilikRumah.toString();
+  String no_kk_penanggung_jawab = noKkPenanggungJawab.toString();
+
+  return Container(
+    width: double.infinity,
+    padding: const EdgeInsets.all(16.0),
+    child: Card(
+      color: Color(0xFFED401C),
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
+          children: <Widget>[
+            // No. Kavling dan Alamat Kavling
             Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/UsersFour.svg',
-                  color: Colors.black,
-                  width: 40,
-                  height: 40,
-                ),
-                // Icon(Icons.person_3, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
-                const SizedBox(width: 20),
-                Text(
-                  'Data Warga',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF181C14),
-                    fontSize: 40,
-                    fontFamily: 'Figtree',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                  ),
-                ),
-              ],
-            ),
-            TextField(
-              controller: searchController,
-              decoration: InputDecoration(
-                labelText: 'Cari Berdasarkan No Kavling/Nama Penanggung Jawab/Nama Pemilik Rumah ',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(),
-              ),
-              onChanged: (value) {
-                fetchPendudukData(value);
-              },
-            ),
-            SizedBox(height: 16),
-            Expanded(
-              child: isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : dataPenduduk.isEmpty
-                      ? Center(
-                          child: Text(
-                            'Data tidak ditemukan',
-                            style: GoogleFonts.lato(color: Colors.black),
-                          ),
-                        )
-                      : ListView.builder(
-                          itemCount: dataPenduduk.length,
-                          itemBuilder: (context, index) {
-                            final penduduk = dataPenduduk[index];
-                            return _buildCard(
-                              penduduk['no_kavling'] ?? 'N/A',
-                              penduduk['alamat_kavling'] ?? 'N/A',
-                              penduduk['nama_pemilik_rumah'] ?? 'N/A',
-                              penduduk['nama_penanggung_jawab'] ?? 'N/A',
-                              penduduk['no_telpon_pemilik_rumah'] ?? 'N/A',
-                              penduduk['no_telpon_penanggung_jawab'] ?? 'N/A',
-                              penduduk['no_kk_pemilik_rumah'] ?? 'N/A',
-                              penduduk['no_kk_penanggung_jawab'] ?? 'N/A',
-                              penduduk['id'] ?? 0,
-                              penduduk['pengurus_rt'] ?? 0,
-                            );
-                          },
-                        ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCard(
-      String noKavling,
-      String alamatKavling,
-      String pemilik,
-      String penanggungJawab,
-      String noTelponPemilik,
-      String noTelponPenanggungJawab,
-      String noKkPemilikRumah,
-      String noKkPenanggungJawab,
-      dynamic id,
-      int pengurusRt) {
-    int parsedId = int.tryParse(id.toString()) ?? 0;
-    String no_kk_pemilik = noKkPemilikRumah.toString();
-    String no_kk_penanggung_jawab = noKkPenanggungJawab.toString();
-
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(16.0),
-      child: Card(
-        color: Color(0xFFED401C),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    width: 300,
-                    padding: const EdgeInsets.all(8.0),
-                    child: Card(
-                      color: Color(0xFF8E2611),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Row(
-                              children: [
-                                Icon(Icons.home, color: Colors.white),
-                                SizedBox(width: 8),
-                                Text(
-                                  'No. Kavling: $noKavling',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  width: 300,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Card(
+                    color: Color(0xFF8E2611),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                            children: [
+                              Icon(Icons.home, color: Colors.white),
+                              SizedBox(width: 8),
+                              Text(
+                                'No. Kavling: $noKavling',
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
-                            SizedBox(height: 8),
-                            Text(
-                              '$alamatKavling',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
                               ),
+                            ],
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            '$alamatKavling',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFF9C4B9),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EditDataWargaPage(id: parsedId),
-                        ),
-                      );
-                    },
-                    child: Text('Ubah Data Warga',
-                        style: GoogleFonts.lato(color: Colors.black)),
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      Text(
-                        'Pemilik Rumah:',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      Icon(Icons.person, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'Nama: $pemilik',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.person, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'No KK: $noKkPemilikRumah',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.phone, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'No. Telepon: $noTelponPemilik',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFF9C4B9),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  KkPemilikRumahPage(no_kk: no_kk_pemilik),
-                            ),
-                          );
-                          print("no kk: $no_kk_pemilik");
-                        },
-                        child: Text('Kartu Keluarga Pemilik Rumah',
-                            style: GoogleFonts.lato(color: Colors.black)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      Text(
-                        'Penanggung Jawab: ',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      Icon(Icons.person, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'Nama: $penanggungJawab',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.person, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'No KK: $noKkPenanggungJawab',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Icon(Icons.phone, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        'No. Telepon: $noTelponPenanggungJawab',
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFF9C4B9),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => KkPenanggungJawabPage(
-                                  no_kk: no_kk_penanggung_jawab),
-                            ),
-                          );
-                        },
-                        child: Text('Kartu Keluarga Penanggung Jawab',
-                            style: GoogleFonts.lato(color: Colors.black)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              SizedBox(height: 16),
-              SizedBox(height: 16),
-              if (pengurusRt != 1)
+                ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFF9C4B9),
                   ),
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          backgroundColor: Color(0xFFFDECE8),
-                          title: Text('Konfirmasi',
-                              style: GoogleFonts.lato(color: Colors.black)),
-                          content: Text(
-                            'Apakah Anda yakin ingin menjadikan warga ini sebagai Pengurus RT? \n\nJika iya, Anda akan diarahkan untuk melakukan login ulang, dan status Anda akan berubah menjadi warga.',
-                            style: GoogleFonts.lato(color: Colors.black),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Batal',
-                                  style: GoogleFonts.lato(color: Colors.red)),
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                updatePengurusRt(parsedId);
-                                //kirimNotifikasiWA(parsedId);
-                                kirimNotifikasiWA();
-                              },
-                              child: Text('Ya',
-                                  style: GoogleFonts.lato(color: Colors.red)),
-                            ),
-                          ],
-                        );
-                      },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EditDataWargaPage(id: parsedId),
+                      ),
                     );
                   },
-                  child: Text('Jadi Pengurus RT',
-                      style: GoogleFonts.lato(color: Colors.black)),
+                  child: Text(
+                    screenWidth > 600 ? 'Ubah Data' : 'Ubah\nData', // Menggunakan \n jika lebar layar kecil
+                    style: GoogleFonts.lato(color: Colors.black),
+                    textAlign: TextAlign.center,  // Memastikan teks terpusat
+                    softWrap: true,  // Membungkus teks jika diperlukan
+                    maxLines: 2,  // Maksimum dua baris
+                  ),
                 ),
-            ],
-          ),
+              ],
+            ),
+            SizedBox(height: 16),
+            // Pemilik Rumah
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Pemilik Rumah:',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            // Menampilkan Nama, No KK, No Telpon di bawah atau samping tergantung lebar layar
+            (screenWidth > 800)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      _buildInfoColumn(Icons.person, 'Nama: $pemilik'),
+                      _buildInfoColumn(Icons.person, 'No KK: $noKkPemilikRumah'),
+                      _buildInfoColumn(Icons.phone, 'No. Telepon: $noTelponPemilik'),
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildInfoRow(Icons.person, 'Nama: $pemilik'),
+                      _buildInfoRow(Icons.person, 'No KK: $noKkPemilikRumah'),
+                      _buildInfoRow(Icons.phone, 'No. Telepon: $noTelponPemilik'),
+                    ],
+                  ),
+            SizedBox(height: 16),
+            
+            // Menempatkan tombol "Kartu Keluarga Pemilik Rumah" di atas bagian "Penanggung Jawab"
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,  // Mengatur tombol di sebelah kiri
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFF9C4B9),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => KkPemilikRumahPage(no_kk: no_kk_pemilik),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Kartu Keluarga Pemilik Rumah',
+                    style: GoogleFonts.lato(color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            
+            // Penanggung Jawab
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Penanggung Jawab:',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ],
+            ),
+            SizedBox(height: 8),
+            // Menampilkan Nama, No KK, No Telpon di bawah atau samping tergantung lebar layar
+            (screenWidth > 800)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      _buildInfoColumn(Icons.person, 'Nama: $penanggungJawab'),
+                      _buildInfoColumn(Icons.person, 'No KK: $noKkPenanggungJawab'),
+                      _buildInfoColumn(Icons.phone, 'No. Telepon: $noTelponPenanggungJawab'),
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildInfoRow(Icons.person, 'Nama: $penanggungJawab'),
+                      _buildInfoRow(Icons.person, 'No KK: $noKkPenanggungJawab'),
+                      _buildInfoRow(Icons.phone, 'No. Telepon: $noTelponPenanggungJawab'),
+                    ],
+                  ),
+            SizedBox(height: 16),
+            
+            // Button "Kartu Keluarga Penanggung Jawab"
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,  // Mengatur tombol di sebelah kiri
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFFF9C4B9),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            KkPenanggungJawabPage(no_kk: no_kk_penanggung_jawab),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'Kartu Keluarga Penanggung Jawab',
+                    style: GoogleFonts.lato(color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 16),
+            // Button "Jadi Pengurus RT"
+            if (pengurusRt != 1)
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFFF9C4B9),
+                ),
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        backgroundColor: Color(0xFFFDECE8),
+                        title: Text(
+                          'Konfirmasi',
+                          style: GoogleFonts.lato(color: Colors.black),
+                        ),
+                        content: Text(
+                          'Apakah Anda yakin ingin menjadikan warga ini sebagai Pengurus RT? \n\nJika iya, Anda akan diarahkan untuk melakukan login ulang, dan status Anda akan berubah menjadi warga.',
+                          style: GoogleFonts.lato(color: Colors.black),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              'Batal',
+                              style: GoogleFonts.lato(color: Colors.red),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              updatePengurusRt(parsedId);
+                              kirimNotifikasiWA();
+                            },
+                            child: Text(
+                              'Ya',
+                              style: GoogleFonts.lato(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Text(
+                  'Jadi Pengurus RT',
+                  style: GoogleFonts.lato(color: Colors.black),
+                ),
+              ),
+          ],
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
+// Membuat kolom info (untuk tampilan horizontal)
+Widget _buildInfoColumn(IconData icon, String text) {
+  return Row(
+    children: [
+      Icon(icon, color: Colors.white),
+      SizedBox(width: 8),
+      Text(
+        text,
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    ],
+  );
+}
+
+// Membuat baris info (untuk tampilan vertikal)
+Widget _buildInfoRow(IconData icon, String text) {
+  return Row(
+    children: [
+      Icon(icon, color: Colors.white),
+      SizedBox(width: 8),
+      Text(
+        text,
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    ],
+  );
+}
+
 }
 
 void main() {

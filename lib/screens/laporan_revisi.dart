@@ -134,17 +134,23 @@ Widget build(BuildContext context) {
             children: [
               Icon(Icons.person_3, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
               const SizedBox(width: 20),
-              Text(
-                'Laporan Revisi Data Warga',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF181C14),
-                  fontSize: 40,
-                  fontFamily: 'Figtree',
-                  fontWeight: FontWeight.w600,
-                  height: 0,
-                ),
-              ),
+                Text(
+                  MediaQuery.of(context).size.width > 700
+                      ? 'Laporan Revisi Data Warga' // Untuk laptop/desktop, satu baris
+                      : 'Laporan Revisi\nData Warga', // Untuk tablet/iPad dan HP, dua atau tiga baris
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF181C14),
+                    fontSize: MediaQuery.of(context).size.width > 600
+                        ? 40 // Ukuran besar untuk laptop/desktop
+                        : (MediaQuery.of(context).size.width > 400
+                            ? 30 // Ukuran medium untuk tablet/iPad
+                            : 24), // Ukuran kecil untuk ponsel
+                    fontFamily: 'Figtree',
+                    fontWeight: FontWeight.w600,
+                    height: 1.2, // Mengatur tinggi baris agar lebih rapi
+                  ),
+                )
             ],
           ),
           SizedBox(height: 16),
@@ -223,44 +229,85 @@ Widget _buildCard(Map revisi) {
                     ),
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Row(
-                      children: [
-                        Icon(Icons.location_on, color: Colors.white),
-                        SizedBox(width: 8),
-                        Text(
-                          'No Kavling: $noKavling',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.person, color: Colors.white),
-                        SizedBox(width: 8),
-                        Text(
-                          'Nama Penanggung Jawab: $penanggungJawab',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.phone, color: Colors.white),
-                        SizedBox(width: 8),
-                        Text(
-                          'Telpon Penanggung Jawab: $noTelponPenanggungJawab',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                      ],
-                    ),
-                   
-                  ],
-                ),
+                // Tampilkan No Kavling, Nama Penanggung Jawab, dan Nomor Telepon hanya jika lebar layar cukup besar (laptop)
+                if (MediaQuery.of(context).size.width > 900) ...[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(Icons.location_on, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            'No Kavling: $noKavling',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.person, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            'Nama Penanggung Jawab: $penanggungJawab',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(Icons.phone, color: Colors.white),
+                          SizedBox(width: 8),
+                          Text(
+                            'Telpon Penanggung Jawab: $noTelponPenanggungJawab',
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
               ],
             ),
+            // Jika lebar layar lebih kecil (tablet/iPad), tampilkan No Kavling, Nama Penanggung Jawab, dan Nomor Telepon di bawah Card
+            if (MediaQuery.of(context).size.width <= 900) ...[
+              SizedBox(height: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(Icons.location_on, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text(
+                        'No Kavling: $noKavling',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.person, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text(
+                        'Nama Penanggung Jawab: $penanggungJawab',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(Icons.phone, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text(
+                        'Telpon Penanggung Jawab: $noTelponPenanggungJawab',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
             SizedBox(height: 16),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -280,14 +327,6 @@ Widget _buildCard(Map revisi) {
   );
 }
 
-
-
-
-
-  
-
-
-  
 void main() {
   runApp(MaterialApp(
     home: LaporanRevisiDataPage(),

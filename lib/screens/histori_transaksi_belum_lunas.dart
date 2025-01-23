@@ -160,16 +160,24 @@ class _HistoriTransaksiBelumPageState extends State<HistoriTransaksiBelumPage> {
                 // Icon(Icons.bar_chart, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
                 const SizedBox(width: 20),
                 Text(
-                  'Rekap Iuran Warga Yang Belum Lunas',
+                    MediaQuery.of(context).size.width > 800
+                          ? 'Rekap Iuran Warga Yang Belum Lunas' // Untuk laptop/desktop
+                          : (MediaQuery.of(context).size.width > 600
+                              ? 'Rekap Iuran Warga Yang Belum\nLunas' // Untuk tablet/iPad
+                              : 'Rekap Iuran Warga Yang\nBelum Lunas'), // Untuk HP
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Color(0xFF181C14),
-                    fontSize: 40,
+                    fontSize: MediaQuery.of(context).size.width > 800
+                        ? 40 // Ukuran besar untuk laptop/desktop
+                        : (MediaQuery.of(context).size.width > 600
+                            ? 30 // Ukuran medium untuk tablet/iPad
+                            : 24), // Ukuran kecil untuk ponsel
                     fontFamily: 'Figtree',
                     fontWeight: FontWeight.w600,
-                    height: 0,
+                    height: 1.2, // Mengatur tinggi baris agar lebih rapi
                   ),
-                ),
+                )
               ],
             ),
             TextField(
