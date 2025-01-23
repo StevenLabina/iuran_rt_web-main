@@ -73,30 +73,30 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
         textColor: Colors.white,
         fontSize: 16.0);
   }
-  Future<void> kirimNotifikasiWA() async {
-  final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
-  try {
-    final responseNotifikasiWA = await http.post(
-      Uri.parse(urlNotifikasiWA),
-      body: {
-        'msg': 'Haloo, ada pengumuman bahwa adanya kegiatan ${_InformasiController.text} dari ${_1tanggalController.text} sampai ${_2tanggalController.text}  ',
-      },
-    );
+//   Future<void> kirimNotifikasiWA() async {
+//   final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
+//   try {
+//     final responseNotifikasiWA = await http.post(
+//       Uri.parse(urlNotifikasiWA),
+//       body: {
+//         'msg': 'Haloo, ada pengumuman bahwa adanya kegiatan ${_InformasiController.text} dari ${_1tanggalController.text} sampai ${_2tanggalController.text}  ',
+//       },
+//     );
 
-    if (responseNotifikasiWA.statusCode == 200) {
-      final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
-      if (jsonResponseNotifikasiWA['status'] == true) {
-        print('Notifikasi WhatsApp berhasil dikirim.');
-      } else {
-        print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
-      }
-    } else {
-      print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
-    }
-  } catch (e) {
-    print('Error: Gagal terhubung ke server WhatsApp $e');
-  }
-}
+//     if (responseNotifikasiWA.statusCode == 200) {
+//       final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
+//       if (jsonResponseNotifikasiWA['status'] == true) {
+//         print('Notifikasi WhatsApp berhasil dikirim.');
+//       } else {
+//         print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
+//       }
+//     } else {
+//       print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Error: Gagal terhubung ke server WhatsApp $e');
+//   }
+// }
   // Future<void> kirimNotifikasiWA() async {
   //   final urlNotifikasiWA = '${ApiUrls.baseUrl}/send_whatsapp_iuran.php';
   //   try {
@@ -286,7 +286,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
                 simpanIuran();
-                kirimNotifikasiWA();
+                //kirimNotifikasiWA();
               },
             ),
           ],
@@ -371,14 +371,14 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
                       Icons.info_outline,
                     ),
                     SizedBox(height: 16),
-                    // Menggunakan LayoutBuilder untuk menentukan tampilan
+                    
                     LayoutBuilder(
                       builder: (context, constraints) {
                         if (constraints.maxWidth > 600) {
-                          // Tampilan untuk laptop
+                          
                           return _buildDateRangeField(context);
                         } else {
-                          // Tampilan untuk tablet dan mobile
+                          
                           return Column(
                             children: [
                               _buildSingleDateField(context, _1tanggalController, _selectDate1, 'Berlaku dari'),

@@ -95,30 +95,30 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
   }
 }
 
- Future<void> kirimNotifikasiWA() async {
-  final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
-  try {
-    final responseNotifikasiWA = await http.post(
-      Uri.parse(urlNotifikasiWA),
-      body: {
-        'msg': 'Haloo, ada iuran pengelolaan lahan "${month.toString()}" dengan nominal Rp${_nominalIuranController.text}',
-      },
-    );
+//  Future<void> kirimNotifikasiWA() async {
+//   final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
+//   try {
+//     final responseNotifikasiWA = await http.post(
+//       Uri.parse(urlNotifikasiWA),
+//       body: {
+//         'msg': 'Haloo, ada iuran pengelolaan lahan "${month.toString()}" dengan nominal Rp${_nominalIuranController.text}',
+//       },
+//     );
 
-    if (responseNotifikasiWA.statusCode == 200) {
-      final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
-      if (jsonResponseNotifikasiWA['status'] == true) {
-        print('Notifikasi WhatsApp berhasil dikirim.');
-      } else {
-        print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
-      }
-    } else {
-      print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
-    }
-  } catch (e) {
-    print('Error: Gagal terhubung ke server WhatsApp $e');
-  }
-}
+//     if (responseNotifikasiWA.statusCode == 200) {
+//       final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
+//       if (jsonResponseNotifikasiWA['status'] == true) {
+//         print('Notifikasi WhatsApp berhasil dikirim.');
+//       } else {
+//         print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
+//       }
+//     } else {
+//       print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Error: Gagal terhubung ke server WhatsApp $e');
+//   }
+// }
 
 
 
@@ -216,7 +216,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
                 simpanIuran();
-                kirimNotifikasiWA();
+                //kirimNotifikasiWA();
               },
             ),
           ],

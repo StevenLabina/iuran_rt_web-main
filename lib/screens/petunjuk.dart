@@ -40,25 +40,26 @@ class PetunjukPage extends StatelessWidget {
             ),
           ),
           _buildStepCard(
-            'Buat Iuran',
+            'Buat Pengumuman Atau Informasi Untuk Warga',
             'Digunakan untuk membuat iuran baru. Anda dapat mengatur kategori iuran, nominal, dan periode pembayaran yang dibutuhkan.',
-            SvgPicture.asset('assets/images/HandCoins.svg',
-            color: Colors.red,
-            width: 40,
-            height: 40,),
+             Icon(
+                    Icons.info,
+                    color: Colors.red,
+                    size: 40,
+                  ),
           ),
           _buildStepCard(
-            'Buat Data Warga',
+            'Buat Tagihan Iuran Untuk Warga',
             'Digunakan untuk mendaftarkan data warga baru. Pastikan mengisi informasi warga dengan lengkap dan akurat.',
-             SvgPicture.asset('assets/images/UserPlus.svg',
+             SvgPicture.asset('assets/images/HandCoins.svg',
             color: Colors.red,
             width: 40,
             height: 40,),
           ),
           _buildStepCard(
-            'Rekap Iuran Warga',
+            'Buat Rincian Isi Data Warga',
             'Digunakan untuk melihat dan memantau rekap pembayaran iuran warga secara online, termasuk riwayat dan status pembayaran.',
-             SvgPicture.asset('assets/images/ChartDonut.svg',
+             SvgPicture.asset('assets/images/UserPlus.svg',
             color: Colors.red,
             width: 40,
             height: 40,),
@@ -72,7 +73,7 @@ class PetunjukPage extends StatelessWidget {
             height: 40,),
           ),
           _buildStepCard(
-            'Histori Transaksi',
+            'Laporan Iuran Tunai Warga',
             'Digunakan untuk melihat riwayat bayar iuran berdasarkan tanggal bayar dan penanggung jawab\n',
             SvgPicture.asset( 'assets/images/Receipt.svg',
             color: Colors.red,
@@ -80,7 +81,37 @@ class PetunjukPage extends StatelessWidget {
             height: 40,),
           ),
           _buildStepCard(
-            'Butuh Bantuan?',
+            'Laporan Transaksi Iuran Warga',
+            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
+            'Whatsapp: 085934282367\n'
+            'Email: stevenlabina25@gmail.com',
+            SvgPicture.asset('assets/images/Lifebuoy.svg',
+            color: Colors.red,
+            width: 40,
+            height: 40,),
+          ),
+           _buildStepCard(
+            'Laporan Revisi Perubahan Data Warga',
+            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
+            'Whatsapp: 085934282367\n'
+            'Email: stevenlabina25@gmail.com',
+            SvgPicture.asset('assets/images/Lifebuoy.svg',
+            color: Colors.red,
+            width: 40,
+            height: 40,),
+          ),
+            _buildStepCard(
+            'Rekap Iuran Warga Yang Belum Lunas',
+            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
+            'Whatsapp: 085934282367\n'
+            'Email: stevenlabina25@gmail.com',
+            SvgPicture.asset('assets/images/Lifebuoy.svg',
+            color: Colors.red,
+            width: 40,
+            height: 40,),
+          ),
+           _buildStepCard(
+            'Rekap Iuran Warga Yang Sudah Lunas',
             'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
             'Whatsapp: 085934282367\n'
             'Email: stevenlabina25@gmail.com',

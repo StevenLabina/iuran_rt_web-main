@@ -187,30 +187,30 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
     }
   }
 
- Future<void> kirimNotifikasiWA() async {
-  final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
-  try {
-    final responseNotifikasiWA = await http.post(
-      Uri.parse(urlNotifikasiWA),
-      body: {
-        'msg': 'Haloo, ada iuran "${_namaIuranController.text}" dengan nominal Rp${_nominalIuranController.text}',
-      },
-    );
+//  Future<void> kirimNotifikasiWA() async {
+//   final urlNotifikasiWA = '${ApiUrls.baseUrl}/whatsapp_api.php';
+//   try {
+//     final responseNotifikasiWA = await http.post(
+//       Uri.parse(urlNotifikasiWA),
+//       body: {
+//         'msg': 'Haloo, ada iuran "${_namaIuranController.text}" dengan nominal Rp${_nominalIuranController.text}',
+//       },
+//     );
 
-    if (responseNotifikasiWA.statusCode == 200) {
-      final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
-      if (jsonResponseNotifikasiWA['status'] == true) {
-        print('Notifikasi WhatsApp berhasil dikirim.');
-      } else {
-        print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
-      }
-    } else {
-      print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
-    }
-  } catch (e) {
-    print('Error: Gagal terhubung ke server WhatsApp $e');
-  }
-}
+//     if (responseNotifikasiWA.statusCode == 200) {
+//       final jsonResponseNotifikasiWA = jsonDecode(responseNotifikasiWA.body);
+//       if (jsonResponseNotifikasiWA['status'] == true) {
+//         print('Notifikasi WhatsApp berhasil dikirim.');
+//       } else {
+//         print('Gagal mengirim notifikasi WhatsApp: ${jsonResponseNotifikasiWA['error'] ?? 'Kesalahan tidak diketahui'}');
+//       }
+//     } else {
+//       print('Gagal mengirim notifikasi WhatsApp: Status Code ${responseNotifikasiWA.statusCode}');
+//     }
+//   } catch (e) {
+//     print('Error: Gagal terhubung ke server WhatsApp $e');
+//   }
+// }
 
 
 //   Future<void> kirimNotifikasiWA() async {
@@ -273,7 +273,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
         final jsonResponseRekap = jsonDecode(responseRekap.body);
         if (jsonResponseRekap['result'] == 'success') {
           // await kirimNotifikasi(idIuran.toString());
-          await kirimNotifikasiWA();
+          //await kirimNotifikasiWA();
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => MainScreen()),
           );
@@ -369,7 +369,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                   MaterialPageRoute(builder: (context) => MyApp()),
                 );
                 simpanIuran();
-                kirimNotifikasiWA();
+                //kirimNotifikasiWA();
               },
             ),
           ],
