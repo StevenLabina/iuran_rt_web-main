@@ -276,9 +276,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/HandCoins.svg'),
-                  // Icon(Icons.monetization_on,
-                  //     size: 24, color: Color(0xFF8B8B8B)),
+                  SvgPicture.asset(
+                    'assets/images/HandCoins.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'TambahIuranPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Buat Tagihan Iuran Untuk\n'
@@ -326,7 +331,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/UserPlus.svg'),
+                  SvgPicture.asset(
+                    'assets/images/UserPlus.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'BuatWargaPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Buat Rincian Isi Data\nWarga',
@@ -372,8 +384,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/UsersFour.svg'),
-                  // Icon(Icons.person_3, size: 24, color: Color(0xFF8B8B8B)),
+                  SvgPicture.asset(
+                    'assets/images/UsersFour.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'DataPendudukPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Data Warga',
@@ -421,7 +439,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'BuktiTransaksiPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Laporan Iuran Tunai Warga',
@@ -468,8 +493,15 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
-                  const SizedBox(width: 14),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'RekapIuranWargaPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
+                  const SizedBox(width :14),
                   Text(
                     'Laporan Transaksi Iuran\n'
                     'Warga',
@@ -516,7 +548,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'LaporanRevisiDataPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Laporan Revisi Perubahan\n'
@@ -564,9 +603,14 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/Receipt.svg', width: 30,
-                    height: 31,),
-                  
+                  SvgPicture.asset(
+                    'assets/images/Receipt.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'HistoriTransaksiBelumPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Rekap Iuran Warga Yang\n'
@@ -618,6 +662,9 @@ class _MyDrawerState extends State<MyDrawer> {
                     'assets/images/Receipt.svg',
                     width: 30,
                     height: 31,
+                    color: widget.currentPage == 'HistoriTransaksiPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
                   ),
                   const SizedBox(width: 14),
                   Text(
@@ -666,10 +713,13 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
+                    SvgPicture.asset(
                     'assets/images/Receipt.svg',
                     width: 30,
                     height: 31,
+                    color: widget.currentPage == 'HistoriKkPemilikPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
                   ),
                   const SizedBox(width: 14),
                   Text(
@@ -720,8 +770,7 @@ class _MyDrawerState extends State<MyDrawer> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => PetunjukPage()),
+                  MaterialPageRoute(builder: (context) => PetunjukPage()),
                 );
               },
               child: Row(
@@ -733,6 +782,9 @@ class _MyDrawerState extends State<MyDrawer> {
                     'assets/images/SealQuestion.svg',
                     width: 30,
                     height: 31,
+                    color: widget.currentPage == 'PetunjukPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
                   ),
                   const SizedBox(width: 14),
                   Text(
