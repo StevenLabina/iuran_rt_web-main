@@ -137,183 +137,240 @@ class _HistoriKkPemilikPageState extends State<HistoriKkPemilikPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Color(0xFFFDECE8),
+    appBar: AppBar(
       backgroundColor: Color(0xFFFDECE8),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFDECE8),
-        elevation: 0,
-      ),
-      drawer: MyDrawer(),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SvgPicture.asset(
-                  'assets/images/Receipt.svg',
-                  color: Colors.black,
-                  width: 40,
-                  height: 40,
+      elevation: 0,
+    ),
+    drawer: MyDrawer(),
+    body: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/Receipt.svg',
+                color: Colors.black,
+                width: 40,
+                height: 40,
+              ),
+              const SizedBox(width: 20),
+              Text(
+                'Kumpulan KK Warga',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF181C14),
+                  fontSize: 40,
+                  fontFamily: 'Figtree',
+                  fontWeight: FontWeight.w600,
+                  height: 0,
                 ),
-                // Icon(Icons.bar_chart, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
-                const SizedBox(width: 20),
-                Text(
-                  'Kumpulan KK Warga',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFF181C14),
-                    fontSize: 40,
-                    fontFamily: 'Figtree',
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // TextField di sebelah kiri
-                Expanded(
-                  child: TextField(
-                    controller: searchController,
-                    decoration: InputDecoration(
-                      labelText: 'Pencarian Berdasarkan No Kartu Keluarga...',
-                      prefixIcon: Icon(Icons.search),
-                      border: OutlineInputBorder(),
+              ),
+            ],
+          ),
+          SizedBox(height: 16),
+          LayoutBuilder(
+            builder: (context, constraints) {
+              bool isMobile = constraints.maxWidth < 970;
+              if (isMobile) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.red,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12),
+                          ),
+                          child: Text(
+                            'KK Pemilik Rumah',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HistoriKkPenanggungJawabPage()),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12),
+                          ),
+                          child: Text(
+                            'KK Penanggung Jawab',
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    onChanged: (value) {
-                      fetchIuranData(value);
-                    },
-                  ),
-                ),
-                SizedBox(width: 8), // Spasi antara TextField dan Container
-
-                // Container di sebelah kanan
-                Container(
-                  width: 567,
-                  height: 50,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Tombol pertama
-                      ElevatedButton(
-                        onPressed: () {
-                         
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12),
-                        ),
-                        child: Text(
-                          'KK Pemilik Rumah',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                          ),
-                        ),
+                    SizedBox(height: 16),
+                    TextField(
+                      controller: searchController,
+                      decoration: InputDecoration(
+                        labelText: 'Pencarian Berdasarkan No Kartu Keluarga...',
+                        prefixIcon: Icon(Icons.search),
+                        border: OutlineInputBorder(),
                       ),
-                      SizedBox(width: 16), // Spasi antar tombol
-                      // Tombol kedua
-                      ElevatedButton(
-                        onPressed: () {
-                         Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HistoriKkPenanggungJawabPage()),
-                          );
+                      onChanged: (value) {
+                        fetchIuranData(value);
+                      },
+                    ),
+                  ],
+                );
+              } else {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                          labelText: 'Pencarian Berdasarkan No Kartu Keluarga...',
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(),
+                        ),
+                        onChanged: (value) {
+                          fetchIuranData(value);
                         },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 24, vertical: 12),
-                        ),
-                        child: Text(
-                          'KK Penanggung Jawab',
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 18,
-                          ),
-                        ),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16),
-            Expanded(
-              child: isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : LayoutBuilder(
-                      builder: (context, constraints) {
-                        bool isWideScreen = constraints.maxWidth > 800;
-                        return SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: ConstrainedBox(
-                              constraints: BoxConstraints(
-                                minWidth: MediaQuery.of(context).size.width,
-                              ),
-                              child: DataTable(
-                                columnSpacing: isWideScreen ? 10 : 20,
-                                columns: [
-                                  DataColumn(label: Text('No KK')),
-                                  DataColumn(label: Text('Nama Lengkap')),
-                                  DataColumn(label: Text('NIK')),
-                                  DataColumn(label: Text('Jenis Kelamin')),
-                                  DataColumn(label: Text('Tempat Lahir')),
-                                  DataColumn(label: Text('Tanggal Lahir')),
-                                  DataColumn(label: Text('Agama')),
-                                  DataColumn(label: Text('Pendidikan')),
-                                  DataColumn(label: Text('Jenis Pekerjaan')),
-                                ],
-                                rows: historiKk.map((item) {
-                                  return DataRow(cells: [
-                                    DataCell(Text(item['no_kk'] ?? '-')),
-                                    DataCell(Text(item['nama_lengkap'] ?? '-')),
-                                    DataCell(Text(item['nik'] ?? '-')),
-                                    DataCell(
-                                        Text(item['jenis_kelamin'] ?? '-')),
-                                    DataCell(Text(item['tempat_lahir'] ?? '-')),
-                                    DataCell(
-                                        Text(item['tanggal_lahir'] ?? '-')),
-                                    DataCell(Text(item['agama'] ?? '-')),
-                                    DataCell(Text(item['pendidikan'] ?? '-')),
-                                    DataCell(
-                                        Text(item['jenis_pekerjaan'] ?? '-')),
-                                  ]);
-                                }).toList(),
+                    ),
+                    SizedBox(width: 8),
+                    Container(
+                      width: 567,
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                            ),
+                            child: Text(
+                              'KK Pemilik Rumah',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
                               ),
                             ),
                           ),
-                        );
-                      },
+                          SizedBox(width: 16),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HistoriKkPenanggungJawabPage()),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                            ),
+                            child: Text(
+                              'KK Penanggung Jawab',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-            ),
-          ],
-        ),
+                  ],
+                );
+              }
+            },
+          ),
+          SizedBox(height: 16),
+          Expanded(
+            child: isLoading
+                ? Center(child: CircularProgressIndicator())
+                : LayoutBuilder(
+                    builder: (context, constraints) {
+                      bool isWideScreen = constraints.maxWidth > 800;
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minWidth: MediaQuery.of(context).size.width,
+                            ),
+                            child: DataTable(
+                              columnSpacing: isWideScreen ? 10 : 20,
+                              columns: [
+                                DataColumn(label: Text('No KK')),
+                                DataColumn(label: Text('Nama Lengkap')),
+                                DataColumn(label: Text('NIK')),
+                                DataColumn(label: Text('Jenis Kelamin')),
+                                DataColumn(label: Text('Tempat Lahir')),
+                                DataColumn(label: Text('Tanggal Lahir')),
+                                DataColumn(label: Text('Agama')),
+                                DataColumn(label: Text('Pendidikan')),
+                                DataColumn(label: Text('Jenis Pekerjaan')),
+                              ],
+                              rows: historiKk.map((item) {
+                                return DataRow(cells: [
+                                  DataCell(Text(item['no_kk'] ?? '-')),
+                                  DataCell(Text(item['nama_lengkap'] ?? '-')),
+                                  DataCell(Text(item['nik'] ?? '-')),
+                                  DataCell(Text(item['jenis_kelamin'] ?? '-')),
+                                  DataCell(Text(item['tempat_lahir'] ?? '-')),
+                                  DataCell(Text(item['tanggal_lahir'] ?? '-')),
+                                  DataCell(Text(item['agama'] ?? '-')),
+                                  DataCell(Text(item['pendidikan'] ?? '-')),
+                                  DataCell(Text(item['jenis_pekerjaan'] ?? '-')),
+                                ]);
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
-        onPressed: exportToExcel,
-        child: SvgPicture.asset(
-          'assets/images/MicrosoftExcelLogo.svg',
-          color: Colors.white,
-          width: 30,
-          height: 30,
-        ),
-        tooltip: 'Export to Excel',
+    ),
+    floatingActionButton: FloatingActionButton(
+      backgroundColor: Colors.red,
+      onPressed: exportToExcel,
+      child: SvgPicture.asset(
+        'assets/images/MicrosoftExcelLogo.svg',
+        color: Colors.white,
+        width: 30,
+        height: 30,
       ),
-      
-    );
-  }
+      tooltip: 'Export to Excel',
+    ),
+  );
+}
 }

@@ -374,7 +374,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
                     
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        if (constraints.maxWidth > 600) {
+                        if (constraints.maxWidth > 800) {
                           
                           return _buildDateRangeField(context);
                         } else {
