@@ -144,7 +144,7 @@ Widget build(BuildContext context) {
       backgroundColor: Color(0xFFFDECE8),
       elevation: 0,
     ),
-    drawer: MyDrawer(),
+    drawer: MyDrawer(currentPage: 'HistoriKkPemilikPage'),
     body: Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(

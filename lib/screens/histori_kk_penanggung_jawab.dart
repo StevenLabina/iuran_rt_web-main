@@ -144,7 +144,7 @@ Widget build(BuildContext context) {
     appBar: AppBar(
       backgroundColor: Color(0xFFFDECE8),
     ),
-    drawer: MyDrawer(),
+    drawer: MyDrawer(currentPage: 'HistoriKkPemilikPage'),
     body: Padding(
       padding: const EdgeInsets.all(16.0),
       child: LayoutBuilder(

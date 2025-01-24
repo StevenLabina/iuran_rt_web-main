@@ -311,7 +311,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'TambahInformasiPage'), // Parameter halaman aktif
       body: Stack(
         children: [
           Container(

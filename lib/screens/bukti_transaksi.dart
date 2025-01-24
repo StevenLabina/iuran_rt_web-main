@@ -210,7 +210,7 @@ Widget build(BuildContext context) {
       backgroundColor: Color(0xFFFDECE8),
       elevation: 0,
     ),
-    drawer: MyDrawer(),
+    drawer: MyDrawer(currentPage: 'BuktiTransaksiPage',),
     body: Container(
       color: Color(0xFFFDECE8),
       padding: const EdgeInsets.all(16.0),

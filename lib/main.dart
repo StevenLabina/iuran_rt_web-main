@@ -157,7 +157,7 @@ class _MainScreenState extends State<MainScreen> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'MainScreen',),
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
