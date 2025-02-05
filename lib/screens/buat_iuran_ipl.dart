@@ -19,10 +19,12 @@ class TambahIuranPLPage extends StatefulWidget {
 class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
   
   final TextEditingController _nominalIuranController = TextEditingController();
+  final TextEditingController _namaIuranController = TextEditingController();
   final TextEditingController _batasTransaksiController =
       TextEditingController();
+
  
-  // final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  
 
   DateTime? _selectedDate, now;
   String month = DateFormat('MMMM').format(DateTime.now());
@@ -40,7 +42,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
   final urlIuran = '${ApiUrls.baseUrl}/buatIuranIpl.php';
 
   final bodyIuran = {
-    'nama_iuran': "Iuran ${month.toString()}",
+    'nama_iuran': _namaIuranController.text,
     'batas_pembayaran': _selectedDate != null
         ? (_selectedDate!.millisecondsSinceEpoch ~/ 1000).toString()
         : '',
@@ -181,6 +183,17 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
 
   void _showConfirmationDialog() {
   
+   if (_namaIuranController.text.isEmpty) {
+      Fluttertoast.showToast(
+          msg: "Nama iuran tidak boleh kosong",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.black38,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      return;
+    }
     if (_batasTransaksiController.text.isEmpty) {
       Fluttertoast.showToast(
           msg: "Batas transaksi tidak boleh kosong",
@@ -267,9 +280,9 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Mendapatkan ukuran layar
+  
     final screenSize = MediaQuery.of(context).size;
-    final isMobile = screenSize.width < 600; // Misalkan 600px sebagai batas untuk mobile
+    final isMobile = screenSize.width < 600;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -292,7 +305,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
             color: Color(0xFFFDECE8),
           ),
           Padding(
-            padding: EdgeInsets.all(isMobile ? 16 : 80), // Padding lebih kecil untuk mobile
+            padding: EdgeInsets.all(isMobile ? 16 : 80),
             child: SingleChildScrollView(
               child: Center(
                 child: Column(
@@ -321,7 +334,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                 color: Color(0xFF181C14),
-                                fontSize: isMobile ? 24 : 40, // Ukuran font lebih kecil untuk mobile
+                                fontSize: isMobile ? 24 : 40, 
                                 fontFamily: 'Figtree',
                                 fontWeight: FontWeight.w600,
                                 height: 1.2, // Tinggi baris untuk menghindari tumpang tindih
@@ -355,7 +368,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                               'Iuran Khusus',
                               style: TextStyle(
                                 color: Colors.red,
-                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
+                                fontSize: isMobile ? 14 : 18, 
                               ),
                             ),
                           ),
@@ -370,7 +383,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                               'Iuran Pengelolaan Lingkungan',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: isMobile ? 14 : 18, // Ukuran font lebih kecil untuk mobile
+                                fontSize: isMobile ? 14 : 18, 
                               ),
                             ),
                           ),
@@ -383,7 +396,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                         Text("Kategori IPL Kavling"),
                         SizedBox(width: 3),
                         InkWell(
-                          onTap: _ketentuanDialog, // Fungsi yang dijalankan saat diklik
+                          onTap: _ketentuanDialog,
                           child: Text(
                             'Klik Disini',
                             style: TextStyle(color: Colors.blue, decoration: TextDecoration.underline),
@@ -412,14 +425,15 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                                 SizedBox(width: 12),
                                 Expanded(
                                   child: TextFormField(
+                                    controller: _namaIuranController,
                                     decoration: InputDecoration(
                                       contentPadding:
                                           EdgeInsets.symmetric(horizontal: 20),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
-                                      hintText: 'Iuran Pengelolaan Lingkungan Bulan ${month.toString()}',
-                                      enabled: false,
+                                      hintText: 'Ketik nama iuran...',
+                                      enabled: true,
                                     ),
                                   ),
                                 ),

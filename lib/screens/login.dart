@@ -81,12 +81,12 @@ class _LoginState extends State<Login> {
             );
           } else {
             setState(() {
-              errorLogin = "Pesan: Tidak memiliki akses untuk masuk layanan ini.";
+              errorLogin = "Anda tidak memiliki akses untuk masuk layanan ini.";
             });
           }
         } else {
           setState(() {
-            errorLogin = "Pesan: Alamat kavling atau kata sandi anda tidak sesuai";
+            errorLogin = "Alamat kavling atau kata sandi anda tidak sesuai";
           });
         }
       } else {
@@ -157,6 +157,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           Container(
@@ -176,7 +177,8 @@ class _LoginState extends State<Login> {
           Center(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
-              child: SizedBox(
+               child: SingleChildScrollView(
+                child: SizedBox(
                 width: 597,
                 child: Card(
                   elevation: 5,
@@ -311,6 +313,9 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
+
+               ),
+              
             ),
           ),
         ],

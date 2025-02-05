@@ -153,11 +153,24 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFDECE8),
-        elevation: 0,
+     appBar: AppBar(
+  backgroundColor: Color(0xFFFDECE8),
+  elevation: 0,
+  title: Row(
+    children: [
+      Text(
+        "Menu Layanan Pengurus RT",
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w600,
+        ),
       ),
-      drawer: MyDrawer(),
+    ],
+  ),
+),
+drawer: MyDrawer(),
+
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
@@ -168,12 +181,12 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: Stack(
           children: [
-            // Layered white color with opacity
+          
             Container(
               color: Colors.white.withOpacity(0.8),
             ),
             Positioned(
-              bottom: 0, // memastikan posisi di bawah layar
+              bottom: 0, 
               left: 0,
               right: 0,
               child: Padding(

@@ -36,7 +36,7 @@ class _ubahKkPemilikRumahPageState extends State<ubahKkPemilikRumahPage> {
     'Konghucu'
   ];
   final List<String> jenisKelaminOptions = [
-    'Pilih Jenis kelamin',
+    'Pilih Jenis Kelamin',
     'Laki-laki',
     'Perempuan'
   ];
@@ -69,6 +69,10 @@ class _ubahKkPemilikRumahPageState extends State<ubahKkPemilikRumahPage> {
             selectedAgamaPemilik = agamaOptions.contains(json['data']['agama'])
                 ? json['data']['agama']
                 : "Pilih Agama";
+              selectedJenisKelaminPemilik =
+                jenisKelaminOptions.contains(json['data']['jenis_kelamin'])
+                    ? json['data']['jenis_kelamin']
+                    : "Pilih Jenis Kelamin";
 
             _pendidikanController.text = json['data']['pendidikan'];
             _jenisPekerjaanController.text = json['data']['jenis_pekerjaan'];

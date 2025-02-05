@@ -22,8 +22,8 @@ class BuatWargaPageCsv extends StatefulWidget {
 }
 
 class _BuatWargaCsvPageState extends State<BuatWargaPageCsv> {
-  String? fileName; // Variable to hold the name of the imported file.
-  List<List<dynamic>>? importedData; // Variable to store the imported CSV data.
+  String? fileName; 
+  List<List<dynamic>>? importedData; 
   @override
   void initState() {
     super.initState();
@@ -60,11 +60,11 @@ class _BuatWargaCsvPageState extends State<BuatWargaPageCsv> {
       });
 
       if (kIsWeb) {
-        // Web: Access bytes instead of path
+        
         Uint8List fileBytes = result.files.single.bytes!;
         convertExcelToCsv(fileBytes);
       } else {
-        // Mobile: Access file path
+      
         String path = result.files.single.path!;
         convertExcelToCsvFromPath(path);
       }
