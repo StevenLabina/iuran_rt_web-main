@@ -141,7 +141,7 @@ class _HistoriTransaksiBelumPageState extends State<HistoriTransaksiBelumPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'HistoriTransaksiBelumPage'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

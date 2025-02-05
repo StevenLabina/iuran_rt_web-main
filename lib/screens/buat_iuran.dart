@@ -398,7 +398,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'TambahIuranPage',),
       body: Stack(
         children: [
           Container(

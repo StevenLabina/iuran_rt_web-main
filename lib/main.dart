@@ -169,7 +169,7 @@ class _MainScreenState extends State<MainScreen> {
     ],
   ),
 ),
-drawer: MyDrawer(),
+drawer: MyDrawer(currentPage: 'MainScreen',),
 
       body: Container(
         width: double.infinity,

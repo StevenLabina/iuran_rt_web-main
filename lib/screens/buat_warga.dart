@@ -227,7 +227,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'BuatWargaPage',),
       body: Stack(
         children: [
           Container(

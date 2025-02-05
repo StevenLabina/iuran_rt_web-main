@@ -290,7 +290,7 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'TambahIuranPage',),
       body: Stack(
         children: [
           Container(

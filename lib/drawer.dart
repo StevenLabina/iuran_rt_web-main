@@ -20,7 +20,11 @@ import 'package:iuran_rt_web/screens/buat_iuran.dart';
 import 'package:iuran_rt_web/screens/petunjuk.dart';
 
 class MyDrawer extends StatefulWidget {
-  @override
+  final String currentPage; // Parameter halaman aktif
+
+  MyDrawer({required this.currentPage});
+
+    @override
   _MyDrawerState createState() => _MyDrawerState();
 }
 
@@ -197,7 +201,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'TambahInformasiPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -217,7 +223,9 @@ class _MyDrawerState extends State<MyDrawer> {
                 children: [
                   Icon(
                     Icons.info,
-                    color: Color(0xFF8B8B8B),
+                    color: widget.currentPage == 'TambahInformasiPage'
+                        ? Colors.red
+                        : Color(0xFF8B8B8B),
                     size: 30,
                   ),
                   // Icon(Icons.monetization_on,
@@ -227,7 +235,9 @@ class _MyDrawerState extends State<MyDrawer> {
                     'Buat Pengumuman atau \n'
                     'Informasi Untuk Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'TambahInformasiPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -247,7 +257,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'TambahIuranPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -264,15 +276,22 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/HandCoins.svg'),
-                  // Icon(Icons.monetization_on,
-                  //     size: 24, color: Color(0xFF8B8B8B)),
+                  SvgPicture.asset(
+                    'assets/images/HandCoins.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'TambahIuranPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Buat Tagihan Iuran Untuk\n'
                     'Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'TambahIuranPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -293,7 +312,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'BuatWargaPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -310,12 +331,21 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/UserPlus.svg'),
+                  SvgPicture.asset(
+                    'assets/images/UserPlus.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'BuatWargaPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Buat Rincian Isi Data\nWarga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'BuatWargaPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -335,7 +365,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'DataPendudukPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -352,13 +384,21 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/UsersFour.svg'),
-                  // Icon(Icons.person_3, size: 24, color: Color(0xFF8B8B8B)),
+                  SvgPicture.asset(
+                    'assets/images/UsersFour.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'DataPendudukPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Data Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'DataPendudukPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -380,7 +420,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'BuktiTransaksiPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -397,12 +439,21 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'BuktiTransaksiPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Laporan Iuran Tunai Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'BuktiTransaksiPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -422,7 +473,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'RekapIuranWargaPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -440,13 +493,22 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
-                  const SizedBox(width: 14),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'RekapIuranWargaPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
+                  const SizedBox(width :14),
                   Text(
                     'Laporan Transaksi Iuran\n'
                     'Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'RekapIuranWargaPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -466,7 +528,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'LaporanRevisiDataPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -484,13 +548,22 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/ChartDonut.svg'),
+                  SvgPicture.asset(
+                    'assets/images/ChartDonut.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'LaporanRevisiDataPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Laporan Revisi Perubahan\n'
                     'Data Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'LaporanRevisiDataPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -510,7 +583,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'HistoriTransaksiBelumPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -528,15 +603,22 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset('assets/images/Receipt.svg', width: 30,
-                    height: 31,),
-                  
+                  SvgPicture.asset(
+                    'assets/images/Receipt.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'HistoriTransaksiBelumPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
                   const SizedBox(width: 14),
                   Text(
                     'Rekap Iuran Warga Yang\n'
                     'Belum Lunas',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'HistoriTransaksiBelumPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -556,7 +638,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'HistoriTransaksiPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -578,13 +662,18 @@ class _MyDrawerState extends State<MyDrawer> {
                     'assets/images/Receipt.svg',
                     width: 30,
                     height: 31,
+                    color: widget.currentPage == 'HistoriTransaksiPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
                   ),
                   const SizedBox(width: 14),
                   Text(
                     'Rekap Iuran Warga Yang\n'
                     'Sudah Lunas',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'HistoriTransaksiPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -604,7 +693,9 @@ class _MyDrawerState extends State<MyDrawer> {
               bottom: 10,
             ),
             decoration: ShapeDecoration(
-              color: Colors.white,
+              color: widget.currentPage == 'HistoriKkPemilikPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -622,16 +713,21 @@ class _MyDrawerState extends State<MyDrawer> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SvgPicture.asset(
+                    SvgPicture.asset(
                     'assets/images/Receipt.svg',
                     width: 30,
                     height: 31,
+                    color: widget.currentPage == 'HistoriKkPemilikPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
                   ),
                   const SizedBox(width: 14),
                   Text(
                     'Rekap Kumpulan KK Warga',
                     style: TextStyle(
-                      color: Color(0xFF8B8B8B),
+                      color: widget.currentPage == 'HistoriKkPemilikPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
                       fontSize: 16,
                       fontFamily: 'Figtree',
                       fontWeight: FontWeight.w500,
@@ -654,42 +750,165 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
 
           Container(
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: ListTile(
-              leading: SvgPicture.asset('assets/images/SealQuestion.svg'),
-              // leading: Icon(Icons.help, color: Color(0xFF8B8B8B)),
-              title: Text(
-                'Petunjuk',
-                style: TextStyle(color: Color(0xFF8B8B8B)),
+            width: 261,
+            height: 65,
+            padding: const EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 30,
+              bottom: 10,
+            ),
+            decoration: ShapeDecoration(
+              color: widget.currentPage == 'PetunjukPage'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
+            ),
+            child: InkWell(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => PetunjukPage()),
                 );
               },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    'assets/images/SealQuestion.svg',
+                    width: 30,
+                    height: 31,
+                    color: widget.currentPage == 'PetunjukPage'
+                        ? Colors.red // Warna saat selected
+                        : Color(0xFF8B8B8B), // Warna default
+                  ),
+                  const SizedBox(width: 14),
+                  Text(
+                    'Petunjuk',
+                    style: TextStyle(
+                      color: widget.currentPage == 'PetunjukPage'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
+                      fontSize: 16,
+                      fontFamily: 'Figtree',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+          // Container(
+          //   color: Color.fromARGB(255, 255, 255, 255),
+          //   child: ListTile(
+          //     leading: SvgPicture.asset('assets/images/SealQuestion.svg'),
+          //     // leading: Icon(Icons.help, color: Color(0xFF8B8B8B)),
+          //     title: Text(
+          //       'Petunjuk',
+          //       style: TextStyle(
+          //                 color: widget.currentPage == 'PetunjukPage'
+          //                 ? Colors.red
+          //                 : Color(0xFF8B8B8B),
+          //             fontSize: 16,
+          //             fontFamily: 'Figtree',
+          //             fontWeight: FontWeight.w500,
+          //           ),
+          //     ),
+          //     onTap: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => PetunjukPage()),
+          //       );
+          //     },
+          //   ),
+          // ),
+
           Container(
-            color: Color.fromARGB(255, 255, 255, 255),
-            child: ListTile(
-              leading: Icon(
-                Icons.home,
-                size: 30.0,
-                color: Color(0xFF8B8B8B),
+            width: 261,
+            height: 65,
+            padding: const EdgeInsets.only(
+              top: 10,
+              left: 20,
+              right: 30,
+              bottom: 10,
+            ),
+            decoration: ShapeDecoration(
+              color: widget.currentPage == 'MainScreen'
+                  ? Colors.red.withOpacity(0.1)
+                  : Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
               ),
-              title: Text(
-                'Halaman Utama',
-                style: TextStyle(color: Color(0xFF8B8B8B)),
-              ),
+            ),
+            child: InkWell(
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MainScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => MainScreen()),
                 );
               },
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.home,
+                    color: widget.currentPage == 'MainScreen'
+                        ? Colors.red
+                        : Color(0xFF8B8B8B),
+                    size: 30,
+                  ),
+                  const SizedBox(width: 14),
+                  Text(
+                    'Halaman Utama',
+                    style: TextStyle(
+                      color: widget.currentPage == 'MainScreen'
+                          ? Colors.red
+                          : Color(0xFF8B8B8B),
+                      fontSize: 16,
+                      fontFamily: 'Figtree',
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+          // Container(
+          //   color: Color.fromARGB(255, 255, 255, 255),
+          //   child: ListTile(
+          //     leading: Icon(
+          //       Icons.home,
+          //       size: 30.0,
+          //       color: Color(0xFF8B8B8B),
+          //     ),
+          //     title: Text(
+          //       'Halaman Utama',
+          //       style: TextStyle(
+          //                 color: widget.currentPage == 'MainScreen'
+          //                 ? Colors.red
+          //                 : Color(0xFF8B8B8B),
+          //             fontSize: 16,
+          //             fontFamily: 'Figtree',
+          //             fontWeight: FontWeight.w500,
+          //           ),
+          //     ),
+          //     onTap: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => MainScreen()),
+          //       );
+          //     },
+          //   ),
+          // ),
 
           Container(
             width: double.infinity,

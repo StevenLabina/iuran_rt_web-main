@@ -311,7 +311,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'TambahInformasiPage'), // Parameter halaman aktif
       body: Stack(
         children: [
           Container(
@@ -374,7 +374,7 @@ class _TambahInformasiPageState extends State<TambahInformasiPage> {
                     
                     LayoutBuilder(
                       builder: (context, constraints) {
-                        if (constraints.maxWidth > 600) {
+                        if (constraints.maxWidth > 800) {
                           
                           return _buildDateRangeField(context);
                         } else {

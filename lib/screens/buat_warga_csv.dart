@@ -245,7 +245,7 @@ class _BuatWargaCsvPageState extends State<BuatWargaPageCsv> {
         backgroundColor: Color(0xFFFDECE8),
       
       ),
-      drawer: MyDrawer(),
+      drawer: MyDrawer(currentPage: 'BuatWargaPage',),
       body: Stack(
         children: [
           Container(
