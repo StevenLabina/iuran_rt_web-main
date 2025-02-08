@@ -446,7 +446,6 @@ class _TambahIuranPLPageState extends State<TambahIuranPLPage> {
                       ),
                     ),
                     SizedBox(height: 16),
-                    // Batas Transaksi Field
                     Container(
                       width: 1000,
                       height: 72,
