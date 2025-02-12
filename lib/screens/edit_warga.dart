@@ -143,7 +143,11 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
             backgroundColor: Colors.black38,
             textColor: Colors.white,
             fontSize: 16.0);
-        Navigator.pop(context);
+
+        
+        setState(() {}); 
+
+        Navigator.pop(context, true); // Kirim data kembali saat pop
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(json['message'])),
@@ -155,6 +159,7 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
       );
     }
   }
+
 
   void _showConfirmationDialog() {
     showDialog(
