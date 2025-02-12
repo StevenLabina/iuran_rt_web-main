@@ -624,7 +624,7 @@ class _TambahIuranPageState extends State<TambahIuranPage> {
                             'Kirim',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: isMobile ? 16 : 20, // Ukuran font lebih kecil untuk mobile
+                              fontSize: isMobile ? 16 : 20, 
                               fontFamily: 'Figtree',
                               fontWeight: FontWeight.w500,
                             ),

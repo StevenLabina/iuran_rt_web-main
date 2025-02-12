@@ -227,7 +227,9 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
         backgroundColor: Color(0xFFFDECE8),
         elevation: 0,
       ),
-      drawer: MyDrawer(currentPage: 'BuatWargaPage',),
+      drawer: MyDrawer(
+        currentPage: 'BuatWargaPage',
+      ),
       body: Stack(
         children: [
           Container(
@@ -349,29 +351,43 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           if (constraints.maxWidth > 800) {
-                            // Tampilan untuk layar besar (PC/laptop)
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.person,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller: namaPemilikController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.person,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller: namaPemilikController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'Nama Lengkap',
+                                              ),
                                             ),
-                                            hintText: 'Nama Lengkap',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -379,24 +395,40 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                 ),
                                 SizedBox(width: 16),
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.call,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller: noTelponPemilikController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  noTelponPemilikController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'No Telepon',
+                                              ),
                                             ),
-                                            hintText: 'No Telepon',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -404,24 +436,39 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                 ),
                                 SizedBox(width: 16),
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.call,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller: nikPemilikController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller: nikPemilikController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'NIK',
+                                              ),
                                             ),
-                                            hintText: 'NIK',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -453,6 +500,15 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
                                 SizedBox(height: 16),
                                 Row(
                                   children: [
@@ -474,6 +530,15 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
                                 SizedBox(height: 16),
                                 Row(
                                   children: [
@@ -494,6 +559,15 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                       ),
                                     ),
                                   ],
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                                 ),
                               ],
                             );
@@ -546,15 +620,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        '*Bersifat opsional',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 14,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -587,15 +652,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           ),
                                         ],
                                       ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        '*Bersifat opsional',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 14,
-                                          fontStyle: FontStyle.italic,
-                                        ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -627,15 +683,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                             ),
                                           ),
                                         ],
-                                      ),
-                                      SizedBox(height: 5),
-                                      Text(
-                                        '*Bersifat opsional',
-                                        style: TextStyle(
-                                          color: Colors.red,
-                                          fontSize: 14,
-                                          fontStyle: FontStyle.italic,
-                                        ),
                                       ),
                                     ],
                                   ),
@@ -672,15 +719,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      '*Bersifat opsional',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 14,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
                                   ],
                                 ),
                                 SizedBox(height: 16),
@@ -709,15 +747,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           ),
                                         ),
                                       ],
-                                    ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      '*Bersifat opsional',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 14,
-                                        fontStyle: FontStyle.italic,
-                                      ),
                                     ),
                                   ],
                                 ),
@@ -748,15 +777,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(height: 5),
-                                    Text(
-                                      '*Bersifat opsional',
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 14,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ],
@@ -779,7 +799,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           if (constraints.maxWidth > 800) {
-                           
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1032,8 +1051,8 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                     SizedBox(height: 8),
                     Container(
                       width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(
+                          16), // Ubah padding agar lebih rapi
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -1041,34 +1060,42 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_on,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: noKKPemilikController,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      hintText: 'No Kartu Keluarga',
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: noKKPemilikController,
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
+                                    hintText: 'No Kartu Keluarga',
                                   ),
                                 ),
-                              ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "*Bersifat wajib",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
                         ],
                       ),
                     ),
+
                     SizedBox(height: 16),
                     //Penanggung Jawab==============================================================================================================================================
                     Container(
@@ -1098,30 +1125,44 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           if (constraints.maxWidth > 800) {
-                            // Tampilan untuk layar besar (PC/laptop)
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.person,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller:
-                                              namaPenanggungJawabController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  namaPenanggungJawabController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'Nama Lengkap',
+                                              ),
                                             ),
-                                            hintText: 'Nama Lengkap',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -1129,25 +1170,40 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                 ),
                                 SizedBox(width: 16),
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.call,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller:
-                                              noTelponPenanggungJawabController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  noTelponPenanggungJawabController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'No Telpon',
+                                              ),
                                             ),
-                                            hintText: 'No Telepon',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -1155,25 +1211,40 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                 ),
                                 SizedBox(width: 16),
                                 Expanded(
-                                  child: Row(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Icon(Icons.call,
-                                          color: Color(0xFF909090)),
-                                      SizedBox(width: 12),
-                                      Expanded(
-                                        child: TextFormField(
-                                          controller:
-                                              nikPenanggungJawabController,
-                                          decoration: InputDecoration(
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 20),
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  nikPenanggungJawabController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'NIK',
+                                              ),
                                             ),
-                                            hintText: 'NIK',
                                           ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
                                         ),
                                       ),
                                     ],
@@ -1182,13 +1253,11 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                               ],
                             );
                           } else {
-                            // Tampilan untuk layar kecil (HP/tablet)
                             return Column(
                               children: [
                                 Row(
                                   children: [
-                                    Icon(Icons.person,
-                                        color: Color(0xFF909090)),
+                                    Icon(Icons.call, color: Color(0xFF909090)),
                                     SizedBox(width: 12),
                                     Expanded(
                                       child: TextFormField(
@@ -1207,6 +1276,15 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
                                 SizedBox(height: 16),
                                 Row(
                                   children: [
@@ -1223,11 +1301,20 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
-                                          hintText: 'No Telepon',
+                                          hintText: 'No Telpon',
                                         ),
                                       ),
                                     ),
                                   ],
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
                                 ),
                                 SizedBox(height: 16),
                                 Row(
@@ -1251,6 +1338,15 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
                               ],
                             );
                           }
@@ -1271,7 +1367,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                       child: LayoutBuilder(
                         builder: (context, constraints) {
                           if (constraints.maxWidth > 800) {
-                            // Tampilan untuk layar besar (PC/laptop)
                             return Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -1703,8 +1798,8 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                     SizedBox(height: 8),
                     Container(
                       width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(
+                          16), // Ubah padding agar lebih rapi
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -1712,34 +1807,42 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min, // Menghindari overflow
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_on,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: noKKPenanggungJawabController,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      hintText: 'No Kartu Keluarga',
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: noKKPenanggungJawabController,
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
+                                    hintText: 'No Kartu Keluarga',
                                   ),
                                 ),
-                              ],
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "*Bersifat wajib",
+                            style: TextStyle(
+                              color: Colors.red,
+                              fontSize: 12,
+                              fontStyle: FontStyle.italic,
                             ),
                           ),
                         ],
                       ),
                     ),
+
                     SizedBox(height: 16),
                     //Akun=======================================================================================================================
                     Container(
@@ -1758,7 +1861,6 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                     SizedBox(height: 8),
                     Container(
                       width: 1000,
-                      height: 72,
                       padding: const EdgeInsets.all(20),
                       decoration: ShapeDecoration(
                         color: Colors.white,
@@ -1767,116 +1869,243 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          if (constraints.maxWidth > 800) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(Icons.location_on,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
                                 Expanded(
-                                  child: TextFormField(
-                                    controller: noKavlingController,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(Icons.person,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller: noKavlingController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'No Kavling',
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      hintText: 'No Kavling',
-                                    ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
+                                SizedBox(width: 16),
                                 Expanded(
-                                  child: TextFormField(
-                                    controller: alamatKavlingController,
-                                    decoration: InputDecoration(
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(Icons.call,
+                                              color: Color(0xFF909090)),
+                                          SizedBox(width: 12),
+                                          Expanded(
+                                            child: TextFormField(
+                                              controller:
+                                                  alamatKavlingController,
+                                              decoration: InputDecoration(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 20),
+                                                border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                                hintText: 'Alamat Kavling',
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      hintText: 'Alamat Kavling',
-                                    ),
+                                      SizedBox(height: 5),
+                                      Text(
+                                        '*Bersifat wajib',
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 14,
+                                          fontStyle: FontStyle.italic,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                               
                               ],
-                            ),
-                          ),
-                        ],
+                            );
+                          } else {
+                            return Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(Icons.person,
+                                        color: Color(0xFF909090)),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: noKavlingController,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          hintText: 'No Kavling',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                                SizedBox(height: 16),
+                                Row(
+                                  children: [
+                                    Icon(Icons.call, color: Color(0xFF909090)),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: TextFormField(
+                                        controller: alamatKavlingController,
+                                        decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          hintText: 'Alamat Kavling',
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 5),
+                                Text(
+                                  '*Bersifat wajib',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: 14,
+                                    fontStyle: FontStyle.italic,
+                                  ),
+                                ),
+                                
+                              ],
+                            );
+                          }
+                        },
                       ),
                     ),
                     SizedBox(height: 8),
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.label, color: Color(0xFF909090)),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: TextFormField(
-                              obscureText: obscureText,
-                              controller: passwordController,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 20),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                hintText: 'Password',
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: ShapeDecoration(
-                              color: Color(0xFFED401C),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                            ),
-                            child: TextButton(
-                              onPressed: () {
-                                setState(() {
-                                  obscureText = !obscureText;
-                                });
-                              },
-                              child: Icon(
-                                obscureText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: Colors.white,
-                                size: 20,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+   Container(
+  width: 1000,
+  padding: const EdgeInsets.all(16), // Sesuaikan padding
+  decoration: ShapeDecoration(
+    color: Colors.white,
+    shape: RoundedRectangleBorder(
+      side: BorderSide(color: Color(0xFFB7B9B6)),
+      borderRadius: BorderRadius.circular(10),
+    ),
+  ),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          Icon(Icons.label, color: Color(0xFF909090)),
+          SizedBox(width: 12),
+          Expanded(
+            child: TextFormField(
+              obscureText: obscureText,
+              controller: passwordController,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                hintText: 'Password',
+              ),
+            ),
+          ),
+          SizedBox(width: 12),
+          Container(
+            width: 60,
+            height: 60,
+            decoration: ShapeDecoration(
+              color: Color(0xFFED401C),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: TextButton(
+              onPressed: () {
+                setState(() {
+                  obscureText = !obscureText;
+                });
+              },
+              child: Icon(
+                obscureText ? Icons.visibility_off : Icons.visibility,
+                color: Colors.white,
+                size: 20,
+              ),
+            ),
+          ),
+        ],
+      ),
+      SizedBox(height: 8),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          "*Bersifat wajib",
+          style: TextStyle(
+            color: Colors.red,
+            fontSize: 12,
+            fontStyle: FontStyle.italic,
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+
+  ],
+),
+
                     SizedBox(height: 20),
                     Center(
                       child: Container(

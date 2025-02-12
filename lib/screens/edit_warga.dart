@@ -16,13 +16,20 @@ class EditDataWargaPage extends StatefulWidget {
 
 class _EditDataWargaPageState extends State<EditDataWargaPage> {
   final TextEditingController _noKavlingController = TextEditingController();
-  final TextEditingController _namaPenanggungJawabController = TextEditingController();
-  final TextEditingController _namaPemilikRumahController = TextEditingController();
-  final TextEditingController _alamatKavlingController = TextEditingController();
-  final TextEditingController _noTelponPemilikRumahController = TextEditingController();
-  final TextEditingController _noTelponPenanggungJawabController = TextEditingController();
-  final TextEditingController _noKkPemilikRumahController = TextEditingController();
-  final TextEditingController _noKkPenanggungJawabController = TextEditingController();
+  final TextEditingController _namaPenanggungJawabController =
+      TextEditingController();
+  final TextEditingController _namaPemilikRumahController =
+      TextEditingController();
+  final TextEditingController _alamatKavlingController =
+      TextEditingController();
+  final TextEditingController _noTelponPemilikRumahController =
+      TextEditingController();
+  final TextEditingController _noTelponPenanggungJawabController =
+      TextEditingController();
+  final TextEditingController _noKkPemilikRumahController =
+      TextEditingController();
+  final TextEditingController _noKkPenanggungJawabController =
+      TextEditingController();
   bool isLoading = true;
   String errorMessage = '';
 
@@ -34,19 +41,26 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
 
   Future<void> fetchWargaData() async {
     try {
-      final response = await http.get(Uri.parse("${ApiUrls.baseUrl}/getWarga.php?id=${widget.id}"));
+      final response = await http
+          .get(Uri.parse("${ApiUrls.baseUrl}/getWarga.php?id=${widget.id}"));
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body);
         if (json['result'] == 'success') {
           setState(() {
             _noKavlingController.text = json['data']['no_kavling'];
-            _namaPenanggungJawabController.text = json['data']['nama_penanggung_jawab'];
-            _namaPemilikRumahController.text = json['data']['nama_pemilik_rumah'];
+            _namaPenanggungJawabController.text =
+                json['data']['nama_penanggung_jawab'];
+            _namaPemilikRumahController.text =
+                json['data']['nama_pemilik_rumah'];
             _alamatKavlingController.text = json['data']['alamat_kavling'];
-            _noTelponPemilikRumahController.text = json['data']['no_telpon_pemilik_rumah'];
-            _noTelponPenanggungJawabController.text = json['data']['no_telpon_penanggung_jawab'];
-            _noKkPemilikRumahController.text = json['data']['no_kk_pemilik_rumah'];
-            _noKkPenanggungJawabController.text = json['data']['no_kk_penanggung_jawab'];
+            _noTelponPemilikRumahController.text =
+                json['data']['no_telpon_pemilik_rumah'];
+            _noTelponPenanggungJawabController.text =
+                json['data']['no_telpon_penanggung_jawab'];
+            _noKkPemilikRumahController.text =
+                json['data']['no_kk_pemilik_rumah'];
+            _noKkPenanggungJawabController.text =
+                json['data']['no_kk_penanggung_jawab'];
             isLoading = false;
           });
         } else {
@@ -121,14 +135,14 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
 
       final json = jsonDecode(response.body);
       if (json['result'] == 'success') {
-         Fluttertoast.showToast(
-          msg: "Update data warga berhasil",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.black38,
-          textColor: Colors.white,
-          fontSize: 16.0);
+        Fluttertoast.showToast(
+            msg: "Update data warga berhasil",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.black38,
+            textColor: Colors.white,
+            fontSize: 16.0);
         Navigator.pop(context);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -144,13 +158,14 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
 
   void _showConfirmationDialog() {
     showDialog(
-      
       context: context,
       builder: (context) {
         return AlertDialog(
           backgroundColor: Color(0xFFFDECE8),
-          title: Text('Konfirmasi', style: GoogleFonts.lato(color: Colors.black)),
-          content: Text('Apakah Anda yakin ingin memperbarui data warga ini?', style: GoogleFonts.lato(color: Colors.black)),
+          title:
+              Text('Konfirmasi', style: GoogleFonts.lato(color: Colors.black)),
+          content: Text('Apakah Anda yakin ingin memperbarui data warga ini?',
+              style: GoogleFonts.lato(color: Colors.black)),
           actions: [
             TextButton(
               onPressed: () {
@@ -160,9 +175,9 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); 
+                Navigator.of(context).pop();
                 updateWargaData();
-                //kirimNotifikasiWA(); 
+                //kirimNotifikasiWA();
               },
               child: Text('Ya', style: GoogleFonts.lato(color: Colors.red)),
             ),
@@ -172,7 +187,7 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
     );
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -213,7 +228,8 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(Icons.person, size: 40, color: Color.fromARGB(255, 0, 0, 0)),
+                          Icon(Icons.person,
+                              size: 40, color: Color.fromARGB(255, 0, 0, 0)),
                           const SizedBox(width: 20),
                           Text(
                             'Ubah Data Warga',
@@ -229,11 +245,12 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
                         ],
                       ),
                     ),
-                    Text('Kavling', style: TextStyle(color: Color(0xFF909090), fontSize:18)),
+                    Text('Kavling',
+                        style:
+                            TextStyle(color: Color(0xFF909090), fontSize: 18)),
                     Container(
                       width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(16),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -241,64 +258,71 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_on, color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _noKavlingController,
-                                    enabled: false,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'No Kavling'),
-                                  ),
-                                ),
-                              ],
-                            ),
+                          // No Kavling
+                          Text(
+                            'No Kavling',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
                           ),
-                          SizedBox(width: 16),
-                          // Nominal Iuran Field
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _alamatKavlingController,
-                                    enabled: false,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'Alamat Kavling'),
-                                    keyboardType: TextInputType.number,
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.location_on, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _noKavlingController,
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'No Kavling',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: 16),
+
+                          // Alamat Kavling
+                          Text(
+                            'Alamat Kavling',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.location_city,
+                                  color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _alamatKavlingController,
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Alamat Kavling',
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
                     ),
                     SizedBox(height: 16),
-                    Text('Pemilik Rumah', style: TextStyle(color: Color(0xFF909090), fontSize:18)),
+                    Text('Pemilik Rumah',
+                        style:
+                            TextStyle(color: Color(0xFF909090), fontSize: 18)),
                     Container(
                       width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(16),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -306,88 +330,96 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                       
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Row(
-                              
-                              children: [
-                                Icon(Icons.person, color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _namaPemilikRumahController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'Nama'),
+                          // Nama
+                          Text(
+                            'Nama',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _namaPemilikRumahController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Nama',
                                   ),
                                 ),
-                              
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                                 SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.person,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _noKkPemilikRumahController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'No KK'),
-                                    keyboardType: TextInputType.number,
+
+                          SizedBox(height: 16),
+
+                          // No KK
+                          Text(
+                            'No KK',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _noKkPemilikRumahController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'No KK',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.call,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _noTelponPemilikRumahController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'No Telpon'),
-                                    keyboardType: TextInputType.number,
+
+                          SizedBox(height: 16),
+
+                          
+                          Text(
+                            'No Telpon',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.call, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _noTelponPemilikRumahController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'No Telpon',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                      
                         ],
                       ),
                     ),
                     SizedBox(height: 16),
-                      Text('Penanggung Jawab', style: TextStyle(color: Color(0xFF909090), fontSize:18)),
-                    Container(
+                    Text('Penanggung Jawab',
+                        style:
+                            TextStyle(color: Color(0xFF909090), fontSize: 18)),
+                  Container(
                       width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(16),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -395,78 +427,86 @@ class _EditDataWargaPageState extends State<EditDataWargaPage> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.person, color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _namaPenanggungJawabController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'Nama'),
+                          // Nama
+                          Text(
+                            'Nama',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _namaPenanggungJawabController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'Nama',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                              SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.person,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _noKkPenanggungJawabController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'No KK'),
-                                    keyboardType: TextInputType.number,
+
+                          SizedBox(height: 16),
+
+                          // No KK
+                          Text(
+                            'No KK',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.person, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _noKkPenanggungJawabController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'No KK',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 16),
-                          // Nominal Iuran Field
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.call,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller:
-                                        _noTelponPenanggungJawabController,
-                                    decoration: InputDecoration(
-                                       contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 20),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                        hintText: 'No Telpon '),
-                                    keyboardType: TextInputType.number,
+
+                          SizedBox(height: 16),
+
+                          
+                          Text(
+                            'No Telpon',
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                          ),
+                          SizedBox(height: 8),
+                          Row(
+                            children: [
+                              Icon(Icons.call, color: Color(0xFF909090)),
+                              SizedBox(width: 12),
+                              Expanded(
+                                child: TextFormField(
+                                  controller: _noKkPenanggungJawabController,
+                                  keyboardType: TextInputType.number,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    hintText: 'No Telpon',
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                            
                         ],
                       ),
                     ),

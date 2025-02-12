@@ -243,261 +243,174 @@ class _ubahKkPenanggungJawabPageState extends State<ubahKkPenanggungJawabPage> {
                         ],
                       ),
                     ),
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _namaLengkapController,
-                                    enabled: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintText: 'Nama Lengkap'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _nikController,
-                                    enabled: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintText: 'nik'),
-                                    keyboardType: TextInputType.number,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: DropdownButtonFormField<String>(
-                                          value: selectedJenisKelaminPemilik ??
-                                              "Pilih Jenis Kelamin",
-                                          items: jenisKelaminOptions.map((jenisKelamin) {
-                                            return DropdownMenuItem(
-                                              value: jenisKelamin,
-                                              child: Text(jenisKelamin),
-                                            );
-                                          }).toList(),
-                                          onChanged: (value) {
-                                            setState(() {
-                                              selectedJenisKelaminPemilik = value;
-                                            });
-                                          },
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _tempatLahirController,
-                                    enabled: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintText: 'Tempat Lahir'),
-                                    keyboardType: TextInputType.number,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Icon(Icons.location_city, color: Color(0xFF909090)),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: TextFormField(
-                              controller: _tanggalLahirController,
-                              readOnly: true,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 20),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                hintText: 'Tanggal Lahir',
-                              ),
-                              onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1900),
-                                  lastDate: DateTime.now(),
-                                );
-                                if (pickedDate != null) {
-                                  setState(() {
-                                    _tanggalLahirController.text =
-                                        "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-                                  });
-                                }
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    Container(
-                      width: 1000,
-                      height: 72,
-                      padding: const EdgeInsets.all(20),
-                      decoration: ShapeDecoration(
-                        color: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(color: Color(0xFFB7B9B6)),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(Icons.location_city, color: Color(0xFF909090)),
-                          SizedBox(width: 12),
-                          Expanded(
-                            child: DropdownButtonFormField<String>(
-                              value: selectedAgamaPemilik ?? "Pilih Agama",
-                              items: agamaOptions.map((agama) {
-                                return DropdownMenuItem(
-                                  value: agama,
-                                  child: Text(agama),
-                                );
-                              }).toList(),
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedAgamaPemilik = value;
-                                });
-                              },
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _pendidikanController,
-                                    enabled: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintText: 'Pendidikan'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(width: 16),
-                          Expanded(
-                            child: Row(
-                              children: [
-                                Icon(Icons.location_city,
-                                    color: Color(0xFF909090)),
-                                SizedBox(width: 12),
-                                Expanded(
-                                  child: TextFormField(
-                                    controller: _jenisPekerjaanController,
-                                    enabled: true,
-                                    decoration: InputDecoration(
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 20),
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                        ),
-                                        hintText: 'Jenis Pekerjaan'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+               Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Container(
+      width: 1000,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Nama Lengkap', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _namaLengkapController,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'Nama Lengkap',
+            ),
+          ),
+          SizedBox(height: 12),
+          Text('NIK', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _nikController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'NIK',
+            ),
+          ),
+        ],
+      ),
+    ),
+    SizedBox(height: 20),
+    Container(
+      width: 1000,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Jenis Kelamin', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          DropdownButtonFormField<String>(
+            value: selectedJenisKelaminPemilik ?? "Pilih Jenis Kelamin",
+            items: jenisKelaminOptions.map((jenisKelamin) {
+              return DropdownMenuItem(
+                value: jenisKelamin,
+                child: Text(jenisKelamin),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedJenisKelaminPemilik = value;
+              });
+            },
+          ),
+          SizedBox(height: 12),
+          Text('Tempat Lahir', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _tempatLahirController,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'Tempat Lahir',
+            ),
+          ),
+          SizedBox(height: 12),
+          Text('Tanggal Lahir', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _tanggalLahirController,
+            readOnly: true,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'Tanggal Lahir',
+            ),
+            onTap: () async {
+              DateTime? pickedDate = await showDatePicker(
+                context: context,
+                initialDate: DateTime.now(),
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
+              );
+              if (pickedDate != null) {
+                setState(() {
+                  _tanggalLahirController.text = "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+                });
+              }
+            },
+          ),
+        ],
+      ),
+    ),
+    SizedBox(height: 20),
+    Container(
+      width: 1000,
+      padding: const EdgeInsets.all(20),
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          side: BorderSide(color: Color(0xFFB7B9B6)),
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Agama', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          DropdownButtonFormField<String>(
+            value: selectedAgamaPemilik ?? "Pilih Agama",
+            items: agamaOptions.map((agama) {
+              return DropdownMenuItem(
+                value: agama,
+                child: Text(agama),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                selectedAgamaPemilik = value;
+              });
+            },
+          ),
+          SizedBox(height: 12),
+          Text('Pendidikan Terakhir', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _pendidikanController,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'Pendidikan',
+            ),
+          ),
+          SizedBox(height: 12),
+          Text('Jenis Pekerjaan', style: TextStyle(color: Colors.black, fontSize: 12)),
+          SizedBox(height: 4),
+          TextFormField(
+            controller: _jenisPekerjaanController,
+            decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 20),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              hintText: 'Jenis Pekerjaan',
+            ),
+          ),
+        ],
+      ),
+    ),
+  ],
+),
+
                     SizedBox(height: 20),
                     Center(
                       child: Container(
