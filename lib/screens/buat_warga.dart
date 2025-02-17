@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -406,6 +407,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           SizedBox(width: 12),
                                           Expanded(
                                             child: TextFormField(
+                                              inputFormatters: [LengthLimitingTextInputFormatter(15)], 
                                               controller:
                                                   noTelponPemilikController,
                                               decoration: InputDecoration(
@@ -447,6 +449,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           SizedBox(width: 12),
                                           Expanded(
                                             child: TextFormField(
+                                              inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                               controller: nikPemilikController,
                                               decoration: InputDecoration(
                                                 contentPadding:
@@ -516,6 +519,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     SizedBox(width: 12),
                                     Expanded(
                                       child: TextFormField(
+                                        inputFormatters: [LengthLimitingTextInputFormatter(15)], 
                                         controller: noTelponPemilikController,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(
@@ -545,7 +549,9 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     Icon(Icons.call, color: Color(0xFF909090)),
                                     SizedBox(width: 12),
                                     Expanded(
+                                      
                                       child: TextFormField(
+                                        inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                         controller: nikPemilikController,
                                         decoration: InputDecoration(
                                           contentPadding: EdgeInsets.symmetric(
@@ -1070,6 +1076,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                               SizedBox(width: 12),
                               Expanded(
                                 child: TextFormField(
+                                  inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                   controller: noKKPemilikController,
                                   decoration: InputDecoration(
                                     contentPadding:
@@ -1181,6 +1188,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           SizedBox(width: 12),
                                           Expanded(
                                             child: TextFormField(
+                                              inputFormatters: [LengthLimitingTextInputFormatter(15)], 
                                               controller:
                                                   noTelponPenanggungJawabController,
                                               decoration: InputDecoration(
@@ -1222,6 +1230,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                           SizedBox(width: 12),
                                           Expanded(
                                             child: TextFormField(
+                                              inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                               controller:
                                                   nikPenanggungJawabController,
                                               decoration: InputDecoration(
@@ -1292,6 +1301,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     SizedBox(width: 12),
                                     Expanded(
                                       child: TextFormField(
+                                        inputFormatters: [LengthLimitingTextInputFormatter(15)], 
                                         controller:
                                             noTelponPenanggungJawabController,
                                         decoration: InputDecoration(
@@ -1323,6 +1333,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                                     SizedBox(width: 12),
                                     Expanded(
                                       child: TextFormField(
+                                        inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                         controller:
                                             nikPenanggungJawabController,
                                         decoration: InputDecoration(
@@ -1817,6 +1828,7 @@ class _BuatWargaPageState extends State<BuatWargaPage> {
                               SizedBox(width: 12),
                               Expanded(
                                 child: TextFormField(
+                                  inputFormatters: [LengthLimitingTextInputFormatter(16)], 
                                   controller: noKKPenanggungJawabController,
                                   decoration: InputDecoration(
                                     contentPadding:

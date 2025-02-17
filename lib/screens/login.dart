@@ -346,6 +346,7 @@ class _LoginState extends State<Login> {
         onChanged: (value) {
           setState(() {
             if (controller == _noKavlingController) {
+              
               username = value;
             } else if (controller == _passwordController) {
               password = value;
@@ -353,7 +354,8 @@ class _LoginState extends State<Login> {
           });
         },
         obscureText: obscureText,
-        inputFormatters: [LengthLimitingTextInputFormatter(16)], 
+        inputFormatters: [LengthLimitingTextInputFormatter(16),  FilteringTextInputFormatter.allow(RegExp(r'^[a-zA-Z0-9\s]+$')) ], 
+          
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(
             vertical: 10.0,

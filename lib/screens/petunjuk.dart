@@ -82,9 +82,7 @@ class PetunjukPage extends StatelessWidget {
           ),
           _buildStepCard(
             'Laporan Transaksi Iuran Warga',
-            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
-            'Whatsapp: 085934282367\n'
-            'Email: stevenlabina25@gmail.com',
+            'Digunakan untuk melihat seluruh riwayat bayar iuran berdasarkan tanggal bayar dan penanggung jawab\n',
             SvgPicture.asset('assets/images/Lifebuoy.svg',
             color: Colors.red,
             width: 40,
@@ -92,9 +90,7 @@ class PetunjukPage extends StatelessWidget {
           ),
            _buildStepCard(
             'Laporan Revisi Perubahan Data Warga',
-            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
-            'Whatsapp: 085934282367\n'
-            'Email: stevenlabina25@gmail.com',
+            'Digunakan untuk melihat laporan revisi perubahan data warga yang telah dilakukan oleh warga\n',
             SvgPicture.asset('assets/images/Lifebuoy.svg',
             color: Colors.red,
             width: 40,
@@ -102,9 +98,7 @@ class PetunjukPage extends StatelessWidget {
           ),
             _buildStepCard(
             'Rekap Iuran Warga Yang Belum Lunas',
-            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
-            'Whatsapp: 085934282367\n'
-            'Email: stevenlabina25@gmail.com',
+            'Digunakan untuk melihat rekap iuran warga yang belum lunas\n',
             SvgPicture.asset('assets/images/Lifebuoy.svg',
             color: Colors.red,
             width: 40,
@@ -112,9 +106,7 @@ class PetunjukPage extends StatelessWidget {
           ),
            _buildStepCard(
             'Rekap Iuran Warga Yang Sudah Lunas',
-            'Jika merasa kesulitan dalam pengoperasian aplikasi iuran RT online ini bisa menghubungi:\n'
-            'Whatsapp: 085934282367\n'
-            'Email: stevenlabina25@gmail.com',
+            'Digunakan untuk melihat rekap iuran warga yang sudah lunas\n', 
             SvgPicture.asset('assets/images/Lifebuoy.svg',
             color: Colors.red,
             width: 40,

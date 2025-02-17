@@ -392,7 +392,7 @@ Widget _buildCard(
             ),
             SizedBox(height: 16),
             
-            // Penanggung Jawab
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
